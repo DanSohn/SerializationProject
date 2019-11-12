@@ -3,8 +3,8 @@ An object that contains an array of object references. The other objects must al
 same time.
  */
 
-package src;
+package source;
 
 public class ObjectD{
-    public ObjectA[10] arr;
+    public ObjectA[] arr;
 }

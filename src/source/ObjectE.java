@@ -3,7 +3,7 @@ An object that uses an instance of one of Java’s collection classes to refer t
 These objects, too, must be created at the same time.
  */
 
-package src;
+package source;
 
 import java.util.*;
 
@@ -12,10 +12,10 @@ public class ObjectE {
     Stack<Object> stack = new Stack<Object>();
 
     public void push(Object obj){
-        stack.push(obj)
+        stack.push(obj);
     }
 
     public void pop(){
-        Object obj = stack.pop()
+        Object obj = stack.pop();
     }
 }

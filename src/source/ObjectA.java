@@ -3,7 +3,7 @@
 able to set the values for these fields.
  */
 
-package src;
+package source;
 
 public class ObjectA{
     public int A;

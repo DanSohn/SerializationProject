@@ -4,10 +4,10 @@ created at the same time, and their primitive instance variables must be settabl
 program must also be able to deal with circular references (i.e. objects connected in a graph).
  */
 
-package src;
+package source;
 
 
 public class ObjectB {
-    public ObjectA;
+    public ObjectA obj;
     
 }
