@@ -9,11 +9,7 @@ import java.util.*;
 
 public class ObjectE {
 
-    Stack<Object> stack;
-
-    public ObjectE() {
-        stack = new Stack<Object>();
-    }
+    Stack<Object> stack = new Stack<Object>();
 
     public void push(Object obj){
         stack.push(obj)
