@@ -42,7 +42,7 @@ public class ObjectCreator {
         Object iniObj;
         if(choice == 1){
             obj = h.HandlerA();
-        }/*else if(choice == 2){
+        }else if(choice == 2){
             obj = h.HandlerB();
         }else if(choice == 3){
             obj = h.HandlerC();
@@ -51,6 +51,6 @@ public class ObjectCreator {
         }else if(choice == 5){
             obj = h.HandlerE();
         }
-        */
+
     }
 }

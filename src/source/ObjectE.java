@@ -9,13 +9,9 @@ import java.util.*;
 
 public class ObjectE {
 
-    Stack<Object> stack = new Stack<Object>();
+    ArrayList<Object> arrayList = new ArrayList<>();
 
-    public void push(Object obj){
-        stack.push(obj);
-    }
-
-    public void pop(){
-        Object obj = stack.pop();
+    public void set(ObjectA val){
+        arrayList.add(val);
     }
 }

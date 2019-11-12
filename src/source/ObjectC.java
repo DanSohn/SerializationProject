@@ -6,4 +6,12 @@ package source;
 
 public class ObjectC{
     public int[] arr;
+
+    public ObjectC(int size){
+        arr = new int[size];
+    }
+
+    public void set(int[] vals){
+        arr = vals;
+    }
 }

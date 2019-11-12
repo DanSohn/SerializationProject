@@ -7,4 +7,12 @@ package source;
 
 public class ObjectD{
     public ObjectA[] arr;
+
+    public ObjectD(int size){
+        arr = new ObjectA[size];
+    }
+
+    public void set(ObjectA[] vals){
+        arr = vals;
+    }
 }
