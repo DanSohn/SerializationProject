@@ -3,6 +3,8 @@
 able to set the values for these fields.
  */
 
+package src;
+
 public class ObjectA{
     public int A;
     public float B;
@@ -17,5 +19,5 @@ public class ObjectA{
         this.D = D;
         this.E = E;
     }
-    
+
 }
