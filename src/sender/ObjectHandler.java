@@ -134,6 +134,7 @@ public class ObjectHandler {
         int arr_size = input.nextInt();
         for(int i = 0; i < arr_size; i++){
             System.out.println("Provide element " + (i+1) + ":");
+            // call handlerA to grab information about the object and then add it to arraylist through invoking m
             val = (ObjectA) HandlerA();
             m.invoke(obj, val);
         }
