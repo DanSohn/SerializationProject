@@ -9,9 +9,7 @@ import java.util.Scanner;
 
 public class ObjectCreator {
 
-    private static int userMenu(){
-
-        Scanner input = new Scanner(System.in);
+    private static void userMenu(){
         System.out.println("****************************************");
         System.out.println("******         User Menu          ******");
         System.out.println("****************************************");
@@ -22,12 +20,37 @@ public class ObjectCreator {
         System.out.println("4) Object containing array of object references");
         System.out.println("5) Object using Java Collection's Stack to reference other objects");
         System.out.println("I choose:");
-
-        return input.nextInt();
     }
-    public static void main(String[] args){
 
-        int choice = userMenu();
+    private static int userChoice(){
+        userMenu();
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        if(choice < 1 || choice > 5){
+            System.out.println("Invalid choice. Please try again");
+            choice = userChoice();
+        }
+        return choice;
+    }
+    public static void main(String[] args) throws Exception{
+
+        int choice = userChoice();
         System.out.println(choice);
+        // create instance of ObjectHandler to reflectively set values for my object.
+        ObjectHandler h = new ObjectHandler();
+        Object obj;
+        Object iniObj;
+        if(choice == 1){
+            obj = h.HandlerA();
+        }/*else if(choice == 2){
+            obj = h.HandlerB();
+        }else if(choice == 3){
+            obj = h.HandlerC();
+        }else if(choice == 4){
+            obj = h.HandlerD();
+        }else if(choice == 5){
+            obj = h.HandlerE();
+        }
+        */
     }
 }

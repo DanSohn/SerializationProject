@@ -9,15 +9,13 @@ public class ObjectA{
     public int A;
     public float B;
     private boolean C;
-    protected char D;
-    private double E;
+    private double D;
 
-    public ObjectA(int A, float B, boolean C, char D, double E){
+    public ObjectA(int A, float B, boolean C, double D){
         this.A = A;
         this.B = B;
         this.C = C;
         this.D = D;
-        this.E = E;
     }
 
 }
