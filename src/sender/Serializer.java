@@ -26,12 +26,18 @@ import org.jdom2.Element;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.IdentityHashMap;
+import java.util.*;
 import java.lang.*;
 import java.lang.reflect.*;
 
 public class Serializer {
-    public Document serialize(Object obj) throws Exception{
+    public static void main(String[] args) throws Exception{
+        ObjectCreator myObj = new ObjectCreator();
+        Object obj = myObj.objectCreator();
+        serialize(obj);
+    }
+
+    public static Document serialize(Object obj) throws Exception{
         Element rootEl = new Element("serialized");
         Document d = new Document(rootEl);
         rootEl.addContent(serializeObject(obj));
@@ -48,10 +54,10 @@ public class Serializer {
         return d;
     }
 
-    public Element serializeObject(Object obj) throws Exception{
+    public static Element serializeObject(Object obj) throws Exception{
         Class classObj = obj.getClass();
         // object element
-        Element objEle = new Element(classObj.getName());
+        Element objEle = new Element("object");
         objEle.setAttribute("class", classObj.getName());
         objEle.setAttribute("id", String.valueOf(classObj.hashCode()));
 
@@ -62,7 +68,9 @@ public class Serializer {
             field.setAccessible(true);
 
             //each field will have two attributes: name and declaring class
-            Element fieldEle = new Element(field.getName());
+            Element fieldEle = new Element("field");
+            // add field element to object element
+            objEle.addContent(fieldEle);
             fieldEle.setAttribute("name", field.getName());
 
             //gets the class declaring class of field, then translates it into a string
@@ -70,10 +78,81 @@ public class Serializer {
 
             //retrieve value of field
             Object value = field.get(obj);
+
+            //check if value is primitive, array, or non-array
+            // remember, field is type Field
+            if(field.getType().isPrimitive() || isWrapperType(value.getClass())){
+                Element fieldVal = new Element("value");
+                fieldVal.addContent(String.valueOf(value));
+
+                fieldEle.addContent(fieldVal);
+            // maybe field.getClass().isArray()
+            }else if(field.getType().isArray()){
+                //array
+                Element arrayEle = new Element("object");
+                Class componentType = field.getType().getComponentType();
+
+                arrayEle.setAttribute("class", String.valueOf(field.getType()));
+
+                int length = Array.getLength(field);
+                //check if primitive type or reference
+                if(componentType.isPrimitive()){
+                    for(int i = 0; i < length; i++){
+                        Element fieldVal = new Element("value");
+                        fieldVal.addContent((String) Array.get(field, i));
+                        fieldEle.addContent(fieldVal);
+                    }
+                }else{
+                    //reference - gets the object from array, finds the object's hash code and prints it out
+                    for(int i = 0; i < length; i++) {
+                        Element fieldVal = new Element("reference");
+                        // reference the object's identity hash code
+                        Object refObj = Array.get(field, i);
+                        int objHashCode = refObj.hashCode();
+                        fieldVal.addContent(String.valueOf(objHashCode));
+                        fieldEle.addContent(fieldVal);
+                    }
+                }
+            }else{
+                //non array object
+                Element fieldVal = new Element("reference");
+                Object refObjCode = value.hashCode();
+                fieldVal.addContent(String.valueOf(refObjCode));
+                fieldEle.addContent(fieldVal);
+            }
+
         }
 
 
 
-        return null;
+        return objEle;
     }
+
+
+
+    // past this point is code gotten from https://stackoverflow.com/questions/709961/determining-if-an-object-is-of-primitive-type
+    // that checks if an object is a wrapper for a primitive
+    private static final Set<Class<?>> WRAPPER_TYPES = getWrapperTypes();
+
+    public static boolean isWrapperType(Class<?> clazz)
+    {
+        return WRAPPER_TYPES.contains(clazz);
+    }
+
+    private static Set<Class<?>> getWrapperTypes()
+    {
+        Set<Class<?>> ret = new HashSet<Class<?>>();
+        ret.add(Boolean.class);
+        ret.add(Character.class);
+        ret.add(Byte.class);
+        ret.add(Short.class);
+        ret.add(Integer.class);
+        ret.add(Long.class);
+        ret.add(Float.class);
+        ret.add(Double.class);
+        ret.add(Void.class);
+        return ret;
+    }
+
+
 }

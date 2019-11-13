@@ -32,13 +32,13 @@ public class ObjectCreator {
         }
         return choice;
     }
-    public static void main(String[] args) throws Exception{
+    public Object objectCreator() throws Exception{
 
         int choice = userChoice();
         System.out.println(choice);
         // create instance of ObjectHandler to reflectively set values for my object.
         ObjectHandler h = new ObjectHandler();
-        Object obj;
+        Object obj = null;
         Object iniObj;
         if(choice == 1){
             obj = h.HandlerA();
@@ -51,7 +51,7 @@ public class ObjectCreator {
         }else if(choice == 5){
             obj = h.HandlerE();
         }
-
+        return obj;
 
     }
 }
