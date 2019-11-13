@@ -31,10 +31,12 @@ import java.lang.*;
 import java.lang.reflect.*;
 
 public class Serializer {
-    public static void main(String[] args) throws Exception{
+    public static Object serializetoSocket() throws Exception{
         ObjectCreator myObj = new ObjectCreator();
         Object obj = myObj.objectCreator();
-        serialize(obj);
+        Document d = serialize(obj);
+        Object sendObject = d;
+        return sendObject;
     }
 
     public static Document serialize(Object obj) throws Exception{
