@@ -69,8 +69,7 @@ public class Serializer {
 
             //each field will have two attributes: name and declaring class
             Element fieldEle = new Element("field");
-            // add field element to object element
-            objEle.addContent(fieldEle);
+
             fieldEle.setAttribute("name", field.getName());
 
             //gets the class declaring class of field, then translates it into a string
@@ -86,6 +85,8 @@ public class Serializer {
                 fieldVal.addContent(String.valueOf(value));
 
                 fieldEle.addContent(fieldVal);
+                // add field element to object element
+                objEle.addContent(fieldEle);
             // maybe field.getClass().isArray()
             }else if(field.getType().isArray()){
                 //array
@@ -94,31 +95,39 @@ public class Serializer {
 
                 arrayEle.setAttribute("class", String.valueOf(field.getType()));
 
-                int length = Array.getLength(field);
+                int length = Array.getLength(value);
+                Element fieldVal = null;
                 //check if primitive type or reference
                 if(componentType.isPrimitive()){
                     for(int i = 0; i < length; i++){
-                        Element fieldVal = new Element("value");
-                        fieldVal.addContent((String) Array.get(field, i));
-                        fieldEle.addContent(fieldVal);
+                        fieldVal = new Element("value");
+                        fieldVal.addContent(String.valueOf(Array.get(value, i)));
+                        arrayEle.addContent(fieldVal);
+
                     }
                 }else{
                     //reference - gets the object from array, finds the object's hash code and prints it out
                     for(int i = 0; i < length; i++) {
-                        Element fieldVal = new Element("reference");
+                        fieldVal = new Element("reference");
                         // reference the object's identity hash code
-                        Object refObj = Array.get(field, i);
+                        Object refObj = Array.get(value, i);
                         int objHashCode = refObj.hashCode();
                         fieldVal.addContent(String.valueOf(objHashCode));
-                        fieldEle.addContent(fieldVal);
+                        arrayEle.addContent(fieldVal);
+
                     }
                 }
+
+                // add field element to object element
+                objEle.addContent(arrayEle);
             }else{
                 //non array object
                 Element fieldVal = new Element("reference");
                 Object refObjCode = value.hashCode();
                 fieldVal.addContent(String.valueOf(refObjCode));
                 fieldEle.addContent(fieldVal);
+                // add field element to object element
+                objEle.addContent(fieldEle);
             }
 
         }
