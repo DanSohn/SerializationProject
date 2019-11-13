@@ -40,7 +40,10 @@ public class Serializer {
     public static Document serialize(Object obj) throws Exception{
         Element rootEl = new Element("serialized");
         Document d = new Document(rootEl);
-        rootEl.addContent(serializeObject(obj));
+        //add all elements ( just a single if primitives, no references, multiple if references)
+        for(Element element: serializeObject(obj)){
+            rootEl.addContent(element);
+        }
         try{
             new XMLOutputter().output(d, System.out);
             XMLOutputter xmlOut = new XMLOutputter();
@@ -54,12 +57,13 @@ public class Serializer {
         return d;
     }
 
-    public static Element serializeObject(Object obj) throws Exception{
+    public static Element[] serializeObject(Object obj) throws Exception{
+        ArrayList<Element> myElements = new ArrayList<Element>();
         Class classObj = obj.getClass();
         // object element
         Element objEle = new Element("object");
         objEle.setAttribute("class", classObj.getName());
-        objEle.setAttribute("id", String.valueOf(classObj.hashCode()));
+        objEle.setAttribute("id", String.valueOf(obj.hashCode()));
 
         //get list of fields
         Field[] fields = classObj.getDeclaredFields();
@@ -88,7 +92,25 @@ public class Serializer {
                 // add field element to object element
                 objEle.addContent(fieldEle);
             // maybe field.getClass().isArray()
-            }else if(field.getType().isArray()){
+                //field.getType() is a Class type
+            }else if(field.getType().isArray() || field.getType().equals(ArrayList.class)){
+
+                // if the field type is an arraylist, i need to convert to array first to do the array functions
+                if (field.getType().equals(ArrayList.class)){
+                    //value is the arraylist OBJECT
+                    value = ((ArrayList) value).toArray();
+                }
+                // convert this into an array, not arraylist!!!!!!!!
+                /*
+                myElements.add(objEle);
+                Collections.reverse(myElements);
+                Element[] arr = new Element[myElements.size()];
+                arr = myElements.toArray(arr);
+                return arr;
+
+                 */
+
+
                 //array
                 Element arrayEle = new Element("object");
                 Class componentType = field.getType().getComponentType();
@@ -98,7 +120,7 @@ public class Serializer {
                 int length = Array.getLength(value);
                 Element fieldVal = null;
                 //check if primitive type or reference
-                if(componentType.isPrimitive()){
+                if(value.getClass().isPrimitive()){
                     for(int i = 0; i < length; i++){
                         fieldVal = new Element("value");
                         fieldVal.addContent(String.valueOf(Array.get(value, i)));
@@ -115,6 +137,11 @@ public class Serializer {
                         fieldVal.addContent(String.valueOf(objHashCode));
                         arrayEle.addContent(fieldVal);
 
+                        //reference object recursively caling serializeObject, and then passing it back to serialize
+                        Element[] els = serializeObject(refObj);
+                        Element refElement = els[0];
+                        myElements.add(refElement);
+
                     }
                 }
 
@@ -128,13 +155,20 @@ public class Serializer {
                 fieldEle.addContent(fieldVal);
                 // add field element to object element
                 objEle.addContent(fieldEle);
+
+                //reference object recursively caling serializeObject, and then passing it back to serialize
+                Element[] els = serializeObject(value);
+                Element refElement = els[0];
+                myElements.add(refElement);
             }
 
         }
 
-
-
-        return objEle;
+        myElements.add(objEle);
+        Collections.reverse(myElements);
+        Element[] arr = new Element[myElements.size()];
+        arr = myElements.toArray(arr);
+        return arr;
     }
 
 
