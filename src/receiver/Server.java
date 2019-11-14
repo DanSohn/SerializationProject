@@ -7,16 +7,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    public static void main(String[] args){
+    public static Object Receiver(){
+        Object object = null;
+        int port = 4411;
         try{
-            int port = 4444;
             ServerSocket serverSocket = new ServerSocket(port);
             Socket socket = serverSocket.accept();
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-            Object object = inputStream.readObject();
+            object = inputStream.readObject();
             socket.close();
         }catch(IOException | ClassNotFoundException e){
             e.printStackTrace();;
         }
+        return object;
     }
 }

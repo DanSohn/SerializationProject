@@ -31,6 +31,13 @@ import java.lang.*;
 import java.lang.reflect.*;
 
 public class Serializer {
+
+    public static void main(String[] args) throws Exception{
+        ObjectCreator myObj = new ObjectCreator();
+        Object obj = myObj.objectCreator();
+        Document d = serialize(obj);
+        Object sendObject = d;
+    }
     public static Object serializetoSocket() throws Exception{
         ObjectCreator myObj = new ObjectCreator();
         Object obj = myObj.objectCreator();
@@ -86,7 +93,7 @@ public class Serializer {
 
             //check if value is primitive, array, or non-array
             // remember, field is type Field
-            if(field.getType().isPrimitive() || isWrapperType(value.getClass())){
+            if(field.getType().isPrimitive() || isWrapperType(field.getType())){
                 Element fieldVal = new Element("value");
                 fieldVal.addContent(String.valueOf(value));
 
@@ -102,16 +109,6 @@ public class Serializer {
                     //value is the arraylist OBJECT
                     value = ((ArrayList) value).toArray();
                 }
-                // convert this into an array, not arraylist!!!!!!!!
-                /*
-                myElements.add(objEle);
-                Collections.reverse(myElements);
-                Element[] arr = new Element[myElements.size()];
-                arr = myElements.toArray(arr);
-                return arr;
-
-                 */
-
 
                 //array
                 Element arrayEle = new Element("object");
@@ -120,9 +117,13 @@ public class Serializer {
                 arrayEle.setAttribute("class", String.valueOf(field.getType()));
 
                 int length = Array.getLength(value);
+                arrayEle.setAttribute("length", String.valueOf(length));
+
                 Element fieldVal = null;
+                // add the length of array at the end
                 //check if primitive type or reference
-                if(value.getClass().isPrimitive()){
+                System.out.println(value.getClass().getComponentType());
+                if(value.getClass().getComponentType().isPrimitive() || isWrapperType(value.getClass())){
                     for(int i = 0; i < length; i++){
                         fieldVal = new Element("value");
                         fieldVal.addContent(String.valueOf(Array.get(value, i)));
@@ -146,6 +147,7 @@ public class Serializer {
 
                     }
                 }
+
 
                 // add field element to object element
                 objEle.addContent(arrayEle);
