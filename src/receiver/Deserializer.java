@@ -78,8 +78,8 @@ public class Deserializer {
                 //find element type
                 Class componentType = classObject.getComponentType();
                 // size of array is an attribute of the object element
-                String length = element.getAttributeValue("length");
-                //obj = Array.newInstance();
+                int length = Integer.parseInt(element.getAttributeValue("length"));
+                obj = Array.newInstance(componentType, length);
             }else{
                 //non-array object
                 // utilizing the no args constructor by explicitly mentioning the no argument constructor
