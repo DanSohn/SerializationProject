@@ -111,10 +111,10 @@ public class Serializer {
                 }
 
                 //array
-                Element arrayEle = new Element("object");
+                Element arrayEle = new Element("field");
                 Class componentType = field.getType().getComponentType();
 
-                arrayEle.setAttribute("class", String.valueOf(field.getType()));
+                arrayEle.setAttribute("name", String.valueOf(field.getType().getName()));
 
                 int length = Array.getLength(value);
                 arrayEle.setAttribute("length", String.valueOf(length));

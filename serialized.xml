@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
   <object class="source.ObjectE" id="2001049719">
-    <object class="class java.util.ArrayList" length="3">
+    <field name="java.util.ArrayList" length="2">
       <reference>868693306</reference>
       <reference>321001045</reference>
-      <reference>791452441</reference>
-    </object>
-  </object>
-  <object class="source.ObjectA" id="791452441">
-    <field name="A" declaringclass="source.ObjectA">
-      <value>3</value>
-    </field>
-    <field name="B" declaringclass="source.ObjectA">
-      <value>3.1</value>
-    </field>
-    <field name="C" declaringclass="source.ObjectA">
-      <value>false</value>
-    </field>
-    <field name="D" declaringclass="source.ObjectA">
-      <value>3.2</value>
     </field>
   </object>
   <object class="source.ObjectA" id="321001045">
@@ -29,7 +14,7 @@
       <value>2.1</value>
     </field>
     <field name="C" declaringclass="source.ObjectA">
-      <value>true</value>
+      <value>false</value>
     </field>
     <field name="D" declaringclass="source.ObjectA">
       <value>2.2</value>
@@ -43,7 +28,7 @@
       <value>1.1</value>
     </field>
     <field name="C" declaringclass="source.ObjectA">
-      <value>false</value>
+      <value>true</value>
     </field>
     <field name="D" declaringclass="source.ObjectA">
       <value>1.2</value>

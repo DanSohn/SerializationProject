@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
   <object class="source.ObjectD" id="2001049719">
-    <object class="class [Lsource.ObjectA;" length="3">
+    <field name="[Lsource.ObjectA;" length="3">
       <reference>1927950199</reference>
       <reference>424058530</reference>
       <reference>321001045</reference>
-    </object>
+    </field>
   </object>
   <object class="source.ObjectA" id="321001045">
     <field name="A" declaringclass="source.ObjectA">

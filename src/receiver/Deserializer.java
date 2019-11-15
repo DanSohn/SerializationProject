@@ -96,8 +96,40 @@ public class Deserializer {
             Integer ID = Integer.parseInt(element.getAttributeValue("id"));
             instanceID.put(ID, obj);
 
+        } // end of for loop
+
+        // may want to put this portion in another for statement due to adding the table as we go. (COMPLETED)
+        // step 3 of the basic design. Assigning values to all instance vars
+        for(Element element: elements){
+
+            //get list of all child elements. each child is a field of the object
+            Element[] children = ElementChildren(element);
+
+            //iterate through each field in the list
+            for(Element child:children){
+                //find name of its declaring class
+                String declaringClass = child.getAttributeValue("declaringclass");
+                //load class dynamically
+                Class classObj = Class.forName(declaringClass);
+                //find the field name
+                String fieldName = child.getAttributeValue("name");
+                //get the field metaobject
+                Field field = classObj.getDeclaredField(fieldName);
+                //set accessible in case private
+                field.setAccessible(true);
+                //initialize value of field using set()
+
+            }
 
 
+            /*
+            5. Initialize the value of the field using set()
+                • If a primitive type, use the stored value (use getText()
+                and create appropriate wrapper object)
+                • If a reference, use the unique identifier to find the
+                corresponding instance in the table
+                • May need to setAccessible(true)
+             */
         }
 
     }

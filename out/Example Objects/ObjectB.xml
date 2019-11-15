@@ -7,16 +7,16 @@
   </object>
   <object class="source.ObjectA" id="1927950199">
     <field name="A" declaringclass="source.ObjectA">
-      <value>2</value>
+      <value>1</value>
     </field>
     <field name="B" declaringclass="source.ObjectA">
-      <value>2.1</value>
+      <value>1.1</value>
     </field>
     <field name="C" declaringclass="source.ObjectA">
-      <value>false</value>
+      <value>true</value>
     </field>
     <field name="D" declaringclass="source.ObjectA">
-      <value>2.2</value>
+      <value>1.2</value>
     </field>
   </object>
 </serialized>
