@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serialized>
+  <object class="source.ObjectA" id="951007336">
+    <field name="A" declaringclass="source.ObjectA">
+      <value>1</value>
+    </field>
+    <field name="B" declaringclass="source.ObjectA">
+      <value>1.1</value>
+    </field>
+    <field name="C" declaringclass="source.ObjectA">
+      <value>true</value>
+    </field>
+    <field name="D" declaringclass="source.ObjectA">
+      <value>1.2</value>
+    </field>
+  </object>
+</serialized>

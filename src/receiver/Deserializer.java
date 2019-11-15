@@ -16,8 +16,8 @@ Basic Design:
             • The length is an attribute of the object element
     3. Associate the new instance with the object’s unique identifier number using a table
         • java.util.HashMap is ideal
-        • The id is the key
-        • The object reference is the value
+            • The id is the key
+            • The object reference is the value
         • The id is an attribute of the object element
 3) Assign values to all instance variables in each nonarray object:
     1. Get a list of the child elements
@@ -65,6 +65,9 @@ public class Deserializer {
 
         Element[] elements = ElementChildren(doc.getRootElement());
 
+        //hashmap storing instances with their unique IDs
+        HashMap<Integer, Object> instanceID = new HashMap<Integer, Object>();
+
         // for each object element in the xml document, find the class name and create instance of the class
         for(Element element: elements){
             String className = element.getAttributeValue("class");
@@ -88,6 +91,12 @@ public class Deserializer {
                 noArgCons.setAccessible(true);
                 obj = noArgCons.newInstance();
             }
+            // at this point, obj is an instance of the element's class
+            // stores each instance with its unique ID (hashcode?)
+            Integer ID = Integer.parseInt(element.getAttributeValue("id"));
+            instanceID.put(ID, obj);
+
+
 
         }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serialized>
+  <object class="source.ObjectB" id="951007336">
+    <field name="obj" declaringclass="source.ObjectB">
+      <reference>1927950199</reference>
+    </field>
+  </object>
+  <object class="source.ObjectA" id="1927950199">
+    <field name="A" declaringclass="source.ObjectA">
+      <value>2</value>
+    </field>
+    <field name="B" declaringclass="source.ObjectA">
+      <value>2.1</value>
+    </field>
+    <field name="C" declaringclass="source.ObjectA">
+      <value>false</value>
+    </field>
+    <field name="D" declaringclass="source.ObjectA">
+      <value>2.2</value>
+    </field>
+  </object>
+</serialized>
