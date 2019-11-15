@@ -6,7 +6,9 @@ package source;
 
 public class ObjectC{
     public int[] arr;
+    public ObjectC(){
 
+    }
     public ObjectC(int size){
         arr = new int[size];
     }

@@ -10,7 +10,9 @@ import java.util.*;
 public class ObjectE {
 
     ArrayList<Object> arrayList = new ArrayList<>();
+    public ObjectE(){
 
+    }
     public void set(ObjectA val){
         arrayList.add(val);
     }

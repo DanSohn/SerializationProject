@@ -10,6 +10,9 @@ package source;
 public class ObjectB {
     public ObjectA obj;
 
+    public ObjectB(){
+
+    }
     public ObjectB(int A, float B, boolean C, double D){
         obj = new ObjectA(A, B, C, D);
     }

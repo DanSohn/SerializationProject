@@ -7,7 +7,9 @@ package source;
 
 public class ObjectD{
     public ObjectA[] arr;
+    public ObjectD(){
 
+    }
     public ObjectD(int size){
         arr = new ObjectA[size];
     }
