@@ -141,6 +141,31 @@ public class ObjectHandler {
 
         return obj;
     }
+    /*
+    public Object HandlerEAuto() throws Exception{
+        //initialize the ObjectC class and its constructor, and its method set
+        Class<ObjectE> c = ObjectE.class;
+        Method m = c.getDeclaredMethod("set", ObjectA.class);
+        //even though i know it's public, set accessible to true
+        m.setAccessible(true);
+        //ask user for parameters
+        input = new Scanner(System.in);
+        //instantiate the object using constructor
+        Object obj = c.newInstance();
+        //call method to set values of array
+        ObjectA val;
+        int arr_size = 2;
+        for(int i = 0; i < arr_size; i++){
+            System.out.println("Provide element " + (i+1) + ":");
+            // call handlerA to grab information about the object and then add it to arraylist through invoking m
+            val = (ObjectA) HandlerA();
+            m.invoke(obj, val);
+        }
+
+        return obj;
+    }
+
+     */
 
 
 

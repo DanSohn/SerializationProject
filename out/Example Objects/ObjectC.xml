@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
   <object class="source.ObjectC" id="2001049719">
-    <field name="[I" length="5">
-      <value>1</value>
-      <value>2</value>
-      <value>3</value>
-      <value>4</value>
-      <value>5</value>
-    </field>
+    <field name="arr" declaringclass="source.ObjectC" />
+  </object>
+  <object class="[I" id="1927950199" length="3">
+    <value>1</value>
+    <value>3</value>
+    <value>2</value>
   </object>
 </serialized>

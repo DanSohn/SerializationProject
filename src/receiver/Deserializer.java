@@ -50,6 +50,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import sender.Client;
 
+import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -57,17 +58,53 @@ import java.lang.*;
 import java.lang.reflect.*;
 
 public class Deserializer {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         // receive from the server the object
         Object object = Server.Receiver();
         // cast that object back into a document
         Document doc = (Document) object;
+        Object docObject = deserialize(doc);
+        boolean recursive = true;
+
+        outputObject(docObject, recursive);
+    }
+
+    public static void outputObject(Object testObj, boolean recursive) throws Exception{
+        String filename = "out/Objects/visualizer.txt";
+        try {
+            PrintStream old = System.out;
+            File file = new File(filename);
+            FileOutputStream fos = new FileOutputStream(file);
+            PrintStream ps = new PrintStream(fos);
+            System.setOut(ps);
+            System.out.println("======================================================");
+            System.out.println("Filename: " + filename);
+            System.out.println("Running Test: " + testObj);
+            System.out.println("Recursive: " + recursive);
+            new Visualizer().inspect(testObj, recursive);
+            System.out.println("======================================================");
+            ps.flush();
+            fos.flush();
+            ps.close();
+            fos.close();
+            System.setOut(old);
+        } catch (IOException ioe) {
+            System.err.println("Unable to open file: " + filename);
+        } catch (Exception e) {
+            System.err.println("Unable to completely run test: " + testObj);
+            e.printStackTrace();
+        }
+
+    }
+    public static Object deserialize(org.jdom2.Document doc) throws Exception {
+
 
         Element[] elements = ElementChildren(doc.getRootElement());
 
         //hashmap storing instances with their unique IDs
         HashMap<Integer, Object> instanceID = new HashMap<Integer, Object>();
 
+        Object obj = null;
         // for each object element in the xml document, find the class name and create instance of the class
         for(Element element: elements){
             String className = element.getAttributeValue("class");
@@ -75,7 +112,7 @@ public class Deserializer {
             Class classObject = Class.forName(className);
 
             //check if non-array object, or if array object
-            Object obj = null;
+            obj = null;
             if(classObject.isArray()){
                 //array object
                 //find element type
@@ -96,17 +133,17 @@ public class Deserializer {
             Integer ID = Integer.parseInt(element.getAttributeValue("id"));
             instanceID.put(ID, obj);
 
-        } // end of for loop
-
-        // may want to put this portion in another for statement due to adding the table as we go. (COMPLETED)
-        // step 3 of the basic design. Assigning values to all instance vars
-        for(Element element: elements){
-
+            //step 3 of the basic design. Assigning values to all instance variables
             //get list of all child elements. each child is a field of the object
             Element[] children = ElementChildren(element);
 
             //iterate through each field in the list
             for(Element child:children){
+                // if the child is not a field, but rather a reference (occurs for object E)
+                if(child.getName().equals("reference")){
+                    Integer referenceID = Integer.parseInt(child.getText());
+
+                }
                 //find name of its declaring class
                 String declaringClass = child.getAttributeValue("declaringclass");
                 //load class dynamically
@@ -121,23 +158,21 @@ public class Deserializer {
                 Class fieldType = field.getType();
                 //initialize value of field using set()
                 if(fieldType.isPrimitive() || isWrapperType(fieldType)){
-
+                    String value = child.getText();
+                    // since i don't know the actual field type, I cast the value (received as a string) into its actual class
+                    Object val = fieldType.cast(value);
+                    field.set(obj, val);
                 }else{
-
+                    Integer refID = Integer.parseInt(child.getText());
+                    Object refObj = instanceID.get(refID);
+                    field.set(obj, refObj);
                 }
             }
 
+        } // end of for loop
 
-            /*
-            5. Initialize the value of the field using set()
-                • If a primitive type, use the stored value (use getText()
-                and create appropriate wrapper object)
-                • If a reference, use the unique identifier to find the
-                corresponding instance in the table
-                • May need to setAccessible(true)
-             */
-        }
 
+        return obj;
     }
 
     public static Element[] ElementChildren(Element root){

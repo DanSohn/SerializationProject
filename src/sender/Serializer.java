@@ -81,49 +81,40 @@ public class Serializer {
             field.setAccessible(true);
 
             //each field will have two attributes: name and declaring class
-            Element fieldEle = new Element("field");
-
-            fieldEle.setAttribute("name", field.getName());
-
-            //gets the class declaring class of field, then translates it into a string
-            fieldEle.setAttribute("declaringclass", field.getDeclaringClass().getName());
+            Element fieldEle = createFieldEle(field);
 
             //retrieve value of field
             Object value = field.get(obj);
 
+            // set field type
+            Class fieldType = field.getType();
             //check if value is primitive, array, or non-array
-            // remember, field is type Field
-            if(field.getType().isPrimitive() || isWrapperType(field.getType())){
-                Element fieldVal = new Element("value");
-                fieldVal.addContent(String.valueOf(value));
+            if(fieldType.isPrimitive() || isWrapperType(fieldType)){
+                Element fieldVal = createValueEle(value);
 
+                // Add value to field, then to object
                 fieldEle.addContent(fieldVal);
+                objEle.addContent(fieldEle);
+            }else if(fieldType.isArray() || fieldType.equals(ArrayList.class)){
                 // add field element to object element
                 objEle.addContent(fieldEle);
-            // maybe field.getClass().isArray()
-                //field.getType() is a Class type
-            }else if(field.getType().isArray() || field.getType().equals(ArrayList.class)){
-
                 // if the field type is an arraylist, i need to convert to array first to do the array functions
                 if (field.getType().equals(ArrayList.class)){
                     //value is the arraylist OBJECT
                     value = ((ArrayList) value).toArray();
                 }
 
+                Class componentType = value.getClass();
+                System.out.println(fieldType);
+                System.out.println(componentType);
                 //array
-                Element arrayEle = new Element("field");
-                Class componentType = field.getType().getComponentType();
-
-                arrayEle.setAttribute("name", String.valueOf(field.getType().getName()));
-
-                int length = Array.getLength(value);
-                arrayEle.setAttribute("length", String.valueOf(length));
+                Element arrayEle = createArrayEle(fieldType, value);
 
                 Element fieldVal = null;
                 // add the length of array at the end
+                int length = Array.getLength(value);
                 //check if primitive type or reference
-                System.out.println(value.getClass().getComponentType());
-                if(value.getClass().getComponentType().isPrimitive() || isWrapperType(value.getClass())){
+                if(componentType.isPrimitive() || isWrapperType(componentType)){
                     for(int i = 0; i < length; i++){
                         fieldVal = new Element("value");
                         fieldVal.addContent(String.valueOf(Array.get(value, i)));
@@ -149,8 +140,8 @@ public class Serializer {
                 }
 
 
-                // add field element to object element
-                objEle.addContent(arrayEle);
+                // add array element to root element
+                myElements.add(arrayEle);
             }else{
                 //non array object
                 Element fieldVal = new Element("reference");
@@ -168,14 +159,46 @@ public class Serializer {
 
         }
 
+        // convert arraylist to array
         myElements.add(objEle);
-        Collections.reverse(myElements);
         Element[] arr = new Element[myElements.size()];
         arr = myElements.toArray(arr);
         return arr;
     }
 
 
+    private static Element createArrayEle(Class fieldType, Object value){
+        Element arrEle = new Element("object");
+        Class componentType = fieldType.getComponentType();
+
+        arrEle.setAttribute("class", String.valueOf(fieldType.getName()));
+
+        //id
+        arrEle.setAttribute("id", String.valueOf(value.hashCode()));
+        //length
+        int length = Array.getLength(value);
+        arrEle.setAttribute("length", String.valueOf(length));
+
+        return arrEle;
+    }
+
+    private static Element createValueEle(Object value){
+        Element fieldVal = new Element("value");
+        fieldVal.addContent(String.valueOf(value));
+
+        return fieldVal;
+    }
+
+    private static Element createFieldEle(Field field){
+        Element fieldEle = new Element("field");
+
+        fieldEle.setAttribute("name", field.getName());
+
+        //gets the class declaring class of field, then translates it into a string
+        fieldEle.setAttribute("declaringclass", field.getDeclaringClass().getName());
+
+        return fieldEle;
+    }
 
     // past this point is code gotten from https://stackoverflow.com/questions/709961/determining-if-an-object-is-of-primitive-type
     // that checks if an object is a wrapper for a primitive
