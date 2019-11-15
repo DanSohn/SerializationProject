@@ -117,8 +117,14 @@ public class Deserializer {
                 Field field = classObj.getDeclaredField(fieldName);
                 //set accessible in case private
                 field.setAccessible(true);
+                //store field's type
+                Class fieldType = field.getType();
                 //initialize value of field using set()
+                if(fieldType.isPrimitive() || isWrapperType(fieldType)){
 
+                }else{
+
+                }
             }
 
 
@@ -139,5 +145,29 @@ public class Deserializer {
         Element[] elementArray = new Element[elementList.size()];
         elementArray = elementList.toArray(elementArray);
         return elementArray;
+    }
+
+    // past this point is code gotten from https://stackoverflow.com/questions/709961/determining-if-an-object-is-of-primitive-type
+    // that checks if an object is a wrapper for a primitive
+    private static final Set<Class<?>> WRAPPER_TYPES = getWrapperTypes();
+
+    public static boolean isWrapperType(Class<?> clazz)
+    {
+        return WRAPPER_TYPES.contains(clazz);
+    }
+
+    private static Set<Class<?>> getWrapperTypes()
+    {
+        Set<Class<?>> ret = new HashSet<Class<?>>();
+        ret.add(Boolean.class);
+        ret.add(Character.class);
+        ret.add(Byte.class);
+        ret.add(Short.class);
+        ret.add(Integer.class);
+        ret.add(Long.class);
+        ret.add(Float.class);
+        ret.add(Double.class);
+        ret.add(Void.class);
+        return ret;
     }
 }
