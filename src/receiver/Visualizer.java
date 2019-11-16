@@ -20,77 +20,11 @@ public class Visualizer {
 
 
     private void inspectClass(Class c, Object obj, int depth) throws IllegalAccessException {
+        String[] tabs = getTab(depth);
+        System.out.println(tabs[0] + "Inspecting class " + c.getName());
         inspectConstructor(c, depth);
         inspectMethod(c, depth);
         inspectField(c, obj, depth);
-    }
-
-    private void inspectSuperClass(Class c, Object obj, int depth) throws IllegalAccessException {
-        //System.out.println("inspecting super class of " + c);
-
-        // handling formatting
-        String[] tabs = getTab(depth);
-        String tab = tabs[0];
-        String tab2 = tabs[1];
-        String tab3 = tabs[2];
-        String tab4 = tabs[3];
-
-        /*
-        System.out.println("Tabbing test:");
-        System.out.println(tab + "here");
-        System.out.println(tab2 + "here");
-        System.out.println(tab3 + "here");
-        System.out.println(tab4 + "here");
-
-         */
-        //print class we are currently looking at
-        //check if its an array
-        if(c.isArray()){
-            // BRUTE FORCING THIS FOR ONE OR TWO ITERATIONS, NOT DOING IN A WHILE LOOP. COULD FIX LATER
-            if(c.getComponentType().isArray()){
-                if(c.getComponentType().getComponentType().isArray()) {
-                    System.out.println(tab + "CLASS: " + c.getComponentType().getComponentType().getComponentType().getName() + "[[[]]]");
-                }else {
-                    System.out.println(tab + "CLASS: " + c.getComponentType().getComponentType().getName() + "[[]]");
-                }
-            }else {
-                System.out.println(tab + "CLASS: " + c.getComponentType().getName() + "[]");
-            }
-        }else {
-            System.out.println(tab + "CLASS: " + c.getName());
-        }
-        Class superClass = c.getSuperclass();
-
-        // handle case when class and superclass both equal object
-        if(c.equals(Object.class) && superClass == null){
-            return;
-        }
-        //print next superclass
-        System.out.println(tab2 + "SUPERCLASS: " + superClass.getName());
-        inspectClass(superClass, obj, depth+2);
-
-    }
-
-    private void inspectInterface(Class c, Object obj, int depth) throws IllegalAccessException {
-        //System.out.println("inspecting interface for " + c);
-        depth += 1;
-        Class[] interfaces = c.getInterfaces();
-
-        // handling formatting
-        String[] tabs = getTab(depth);
-        String tab = tabs[0];
-
-        if(interfaces.length==0){
-            System.out.println(tab + "** NO SUPERINTERFACE **");
-        }else{
-            // class does have interfaces
-            for (Class anInterface : interfaces) {
-                System.out.println(tab + "INTERFACE: " + anInterface.getName());
-                inspectInterface(anInterface, obj, depth);
-                inspectMethod(anInterface, depth);
-                inspectField(anInterface, obj, depth);
-            }
-        }
     }
 
     private void inspectConstructor(Class c, int depth){
@@ -244,7 +178,14 @@ public class Visualizer {
                 //contents of the array
                 for (int j = 0; j < len; j++) {
                     Object arrObj = Array.get(value, j);
-                    System.out.println(tab4 + arrObj);
+                    // check if the value is a primitive, or if its an object reference
+                    if(arrObj.getClass().isPrimitive()) {
+                        System.out.println(tab4 + arrObj);
+                    }else{
+                        //value is an object reference
+                        inspectClass(arrObj.getClass(), arrObj, depth + 1);
+
+                    }
                 }
                 System.out.println(tab3 + "]");
             } else {
