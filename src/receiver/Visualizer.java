@@ -15,19 +15,17 @@ public class Visualizer {
     public void inspect(Object obj, boolean recursive) throws IllegalAccessException {
         // reference obj's class object
         Class c = obj.getClass();
-        inspectClass(c, obj, recursive, 0);
+        inspectClass(c, obj, 0);
     }
 
 
-    private void inspectClass(Class c, Object obj, boolean recursive, int depth) throws IllegalAccessException {
-        inspectSuperClass(c, obj, recursive, depth);
-        inspectInterface(c, obj, recursive, depth);
+    private void inspectClass(Class c, Object obj, int depth) throws IllegalAccessException {
         inspectConstructor(c, depth);
         inspectMethod(c, depth);
-        inspectField(c, obj, recursive, depth);
+        inspectField(c, obj, depth);
     }
 
-    private void inspectSuperClass(Class c, Object obj, boolean recursive, int depth) throws IllegalAccessException {
+    private void inspectSuperClass(Class c, Object obj, int depth) throws IllegalAccessException {
         //System.out.println("inspecting super class of " + c);
 
         // handling formatting
@@ -69,11 +67,11 @@ public class Visualizer {
         }
         //print next superclass
         System.out.println(tab2 + "SUPERCLASS: " + superClass.getName());
-        inspectClass(superClass, obj, recursive, depth+2);
+        inspectClass(superClass, obj, depth+2);
 
     }
 
-    private void inspectInterface(Class c, Object obj, boolean recursive, int depth) throws IllegalAccessException {
+    private void inspectInterface(Class c, Object obj, int depth) throws IllegalAccessException {
         //System.out.println("inspecting interface for " + c);
         depth += 1;
         Class[] interfaces = c.getInterfaces();
@@ -86,11 +84,11 @@ public class Visualizer {
             System.out.println(tab + "** NO SUPERINTERFACE **");
         }else{
             // class does have interfaces
-            for(int i = 0; i < interfaces.length; i++){
-                System.out.println(tab + "INTERFACE: " + interfaces[i].getName());
-                inspectInterface(interfaces[i], obj, recursive, depth);
-                inspectMethod(interfaces[i], depth);
-                inspectField(interfaces[i], obj, recursive, depth);
+            for (Class anInterface : interfaces) {
+                System.out.println(tab + "INTERFACE: " + anInterface.getName());
+                inspectInterface(anInterface, obj, depth);
+                inspectMethod(anInterface, depth);
+                inspectField(anInterface, obj, depth);
             }
         }
     }
@@ -104,16 +102,16 @@ public class Visualizer {
 
         // list of each constructors for a class
         Constructor[] constructors = c.getDeclaredConstructors();
-        for (int i = 0; i < constructors.length; i++){
+        for (Constructor constructor : constructors) {
             System.out.println(tab + "CONSTRUCTOR:");
-            System.out.println(tab2 + "Name: " + constructors[i].getName());
+            System.out.println(tab2 + "Name: " + constructor.getName());
 
             //parameters
-            Class[] parameterTypes = constructors[i].getParameterTypes();
+            Class[] parameterTypes = constructor.getParameterTypes();
             System.out.print(tab2 + "Parameter Types: ");
-            if (parameterTypes.length == 0){
+            if (parameterTypes.length == 0) {
                 System.out.println("None");
-            }else {
+            } else {
                 for (Class parameter : parameterTypes) {
                     System.out.print(parameter.getName() + " ");
                 }
@@ -121,7 +119,7 @@ public class Visualizer {
             }
 
             //modifier
-            int mod = constructors[i].getModifiers();
+            int mod = constructor.getModifiers();
             System.out.println(tab2 + "Modifier: " + Modifier.toString(mod));
         }
     }
@@ -143,18 +141,18 @@ public class Visualizer {
             return;
         }
         //iterate through all methods
-        for (int i = 0; i < methods.length; i++){
+        for (Method method : methods) {
             System.out.println(tab + "METHOD:");
 
             //name
-            System.out.println(tab2 + "Name: " + methods[i].getName());
+            System.out.println(tab2 + "Name: " + method.getName());
 
             //exceptions
-            Class[] exceptionTypes = methods[i].getExceptionTypes();
+            Class[] exceptionTypes = method.getExceptionTypes();
             System.out.print(tab2 + "Exception Types: ");
-            if (exceptionTypes.length == 0){
+            if (exceptionTypes.length == 0) {
                 System.out.println("None");
-            }else {
+            } else {
                 for (Class exception : exceptionTypes) {
                     System.out.print(exception.getName() + " ");
                 }
@@ -162,11 +160,11 @@ public class Visualizer {
             }
 
             //parameters
-            Class[] parameterTypes = methods[i].getParameterTypes();
+            Class[] parameterTypes = method.getParameterTypes();
             System.out.print(tab2 + "Parameter Types: ");
-            if (parameterTypes.length == 0){
+            if (parameterTypes.length == 0) {
                 System.out.println("None");
-            }else {
+            } else {
                 for (Class parameter : parameterTypes) {
                     System.out.print(parameter.getName() + " ");
                 }
@@ -174,16 +172,16 @@ public class Visualizer {
             }
 
             //return type
-            System.out.println(tab2 + "Return Type: " + methods[i].getReturnType().getName());
+            System.out.println(tab2 + "Return Type: " + method.getReturnType().getName());
 
             //modifier
-            int mod = methods[i].getModifiers();
+            int mod = method.getModifiers();
             System.out.println(tab2 + "Modifier: " + Modifier.toString(mod));
         }
 
     }
 
-    private void inspectField(Class c, Object obj, boolean recursive, int depth) throws IllegalAccessException {
+    private void inspectField(Class c, Object obj, int depth) throws IllegalAccessException {
         depth += 1;
         // handling formatting
         String[] tabs = getTab(depth);
@@ -200,65 +198,59 @@ public class Visualizer {
             System.out.println(tab + "** NO FIELDS **");
             return;
         }
-        for(int i = 0; i < fields.length; i++) {
+        for (Field field : fields) {
             System.out.println(tab + "FIELD: ");
 
             //name
-            System.out.println(tab2 + "Name: " + fields[i].getName());
+            System.out.println(tab2 + "Name: " + field.getName());
 
             //type
-            if(fields[i].getType().isPrimitive()) {
-                System.out.println(tab2 + "Type: " + fields[i].getType());
-            }else if(fields[i].getType().isArray()){
-                System.out.println(tab2 + "Type: " + fields[i].getType().getComponentType() + "[]");
+            if (field.getType().isPrimitive()) {
+                System.out.println(tab2 + "Type: " + field.getType());
+            } else if (field.getType().isArray()) {
+                System.out.println(tab2 + "Type: " + field.getType().getComponentType() + "[]");
             }
             //modifiers
-            int mod = fields[i].getModifiers();
+            int mod = field.getModifiers();
             System.out.println(tab2 + "Modifier: " + Modifier.toString(mod));
 
             //value
             //If the field is an object reference, and recursive is set to false, then simply print out the
             //“reference value” directly (this will be the name of the object’s class plus the object’s
             //“identity hash code” ex. java.lang.Object@7d4991ad).
-            fields[i].setAccessible(true);
-            Object value = fields[i].get(obj);
+            field.setAccessible(true);
+            Object value = field.get(obj);
 
             // if value is null / not init
-            if(value == null) {
+            if (value == null) {
                 System.out.println(tab2 + "Value: null");
                 continue;
             }
 
             //if primitive wrapper
-            if (isWrapperType(value.getClass())){
+            if (isWrapperType(value.getClass())) {
                 System.out.println(tab2 + "Value: " + value.toString());
                 //if array
-            }else if(value.getClass().isArray()) {
+            } else if (value.getClass().isArray()) {
                 //print out name, component type, length, and contents
                 System.out.println(tab2 + "Value: ");
                 //component type:
-                System.out.println(tab3 + "Type: " + fields[i].getType().getComponentType());
+                System.out.println(tab3 + "Type: " + field.getType().getComponentType());
                 //length:
                 int len = Array.getLength(value);
                 System.out.println(tab3 + "Length: " + len);
                 //contents:
                 System.out.println(tab3 + "Contents: [");
                 //contents of the array
-                for(int j = 0; j < len; j ++){
+                for (int j = 0; j < len; j++) {
                     Object arrObj = Array.get(value, j);
                     System.out.println(tab4 + arrObj);
                 }
                 System.out.println(tab3 + "]");
-            }else{
+            } else {
                 //if object reference
+                inspectClass(value.getClass(), value, depth + 1);
 
-                if (recursive) {
-                    //do i need to use Class getDeclaringClass()
-                    //System.out.println("RECURSING************************************************************");
-                    inspectClass(value.getClass(), value, recursive, depth+1);
-                } else {
-                    System.out.println(tab2 + "Value: " + value.getClass().getName() + "@" + identityHashCode(obj));
-                }
             }
         }
     }
