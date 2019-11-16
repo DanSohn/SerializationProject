@@ -18,11 +18,7 @@ Basic Design
 package sender;
 
 import org.jdom2.*;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
-import org.jdom2.Attribute;
-import org.jdom2.Document;
-import org.jdom2.Element;
+import org.jdom2.output.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,6 +27,8 @@ import java.lang.*;
 import java.lang.reflect.*;
 
 public class Serializer {
+
+    private IdentityHashMap map = new IdentityHashMap();
 
     public static void main(String[] args) throws Exception{
         ObjectCreator myObj = new ObjectCreator();
@@ -69,13 +67,17 @@ public class Serializer {
     public static Element[] serializeObject(Object obj) throws Exception{
         ArrayList<Element> myElements = new ArrayList<Element>();
         Class classObj = obj.getClass();
+        int objHash = obj.hashCode();
+        System.out.println("inner hash code: " + objHash + " for object " + classObj.getName());
         // object element, my main object
         Element objEle = new Element("object");
         objEle.setAttribute("class", classObj.getName());
         objEle.setAttribute("id", String.valueOf(obj.hashCode()));
 
+
         //get list of fields
         Field[] fields = classObj.getDeclaredFields();
+        System.out.println("number of fields: " + fields.length);
         for (Field field : fields) {
             //ensure that the field is accessible if set to protected/ private
             field.setAccessible(true);
@@ -90,28 +92,37 @@ public class Serializer {
             Class fieldType = field.getType();
             //check if value is primitive, array, or non-array
             if(fieldType.isPrimitive() || isWrapperType(fieldType)){
+                System.out.println("Primitive");
                 Element fieldVal = createValueEle(value);
-
                 // Add value to field, then to object
                 fieldEle.addContent(fieldVal);
                 objEle.addContent(fieldEle);
             }else if(fieldType.isArray() || fieldType.equals(ArrayList.class)){
-                System.out.println("Field type is array: " + field.getName());
+                //System.out.println("random " + value.hashCode());
+
+                //System.out.println("Field type is array: " + field.getName());
+
+
+                Class componentType = fieldType.getComponentType();
+
+                // if the field type is an arraylist, i need to convert to array first to do the array functions
+                if (field.getType().equals(ArrayList.class)){
+                    System.out.println("Field is an arraylist . Doing extra");
+                    //value is the arraylist OBJECT
+                    value = ((ArrayList) value).toArray();
+                    componentType = value.getClass();
+                }
+                //System.out.println("random2 " + value.hashCode());
+
                 // add field element to object element
                 // need to add a reference tag from the actual array to this
                 Element refVal = createRefEle(value);
                 fieldEle.addContent(refVal);
 
                 objEle.addContent(fieldEle);
-                // if the field type is an arraylist, i need to convert to array first to do the array functions
-                if (field.getType().equals(ArrayList.class)){
-                    //value is the arraylist OBJECT
-                    value = ((ArrayList) value).toArray();
-                }
 
-                Class componentType = fieldType.getComponentType();
                 //System.out.println(fieldType);
-                System.out.println(componentType);
+                //System.out.println("Component type: " + componentType);
                 //array
                 Element arrayEle = createArrayEle(fieldType, value);
 
@@ -120,6 +131,7 @@ public class Serializer {
                 int length = Array.getLength(value);
                 //check if primitive type or reference
                 if(componentType.isPrimitive() || isWrapperType(componentType)){
+                    System.out.println("Compoenent is a primitive");
                     for(int i = 0; i < length; i++){
                         fieldVal = new Element("value");
                         fieldVal.addContent(String.valueOf(Array.get(value, i)));
@@ -127,16 +139,19 @@ public class Serializer {
 
                     }
                 }else{
+                    System.out.println("Compoenent is not a primitive");
+
                     //reference - gets the object from array, finds the object's hash code and prints it out
                     for(int i = 0; i < length; i++) {
                         Element refTag = new Element("reference");
                         // reference the object's identity hash code
                         Object refObj = Array.get(value, i);
                         int objHashCode = refObj.hashCode();
+                        System.out.println("hash code: " + objHashCode);
                         refTag.addContent(String.valueOf(objHashCode));
                         arrayEle.addContent(refTag);
 
-                        //reference object recursively caling serializeObject, and then passing it back to serialize
+                        //reference object recursively calling serializeObject, and then passing it back to serialize
                         Element[] els = serializeObject(refObj);
                         Element refElement = els[0];
                         myElements.add(refElement);
@@ -148,6 +163,7 @@ public class Serializer {
                 // add array element to root element
                 myElements.add(arrayEle);
             }else{ //non array object
+                System.out.println("Reference object");
                 Element RefVal = createRefEle(value);
 
                 fieldEle.addContent(RefVal);
@@ -210,6 +226,11 @@ public class Serializer {
         return fieldEle;
     }
 
+    private String getID(Object obj, IdentityHashMap map){
+        String myID = Integer.toString(map.size());
+        map.put(myID, obj);
+        return myID;
+    }
     // past this point is code gotten from https://stackoverflow.com/questions/709961/determining-if-an-object-is-of-primitive-type
     // that checks if an object is a wrapper for a primitive
     private static final Set<Class<?>> WRAPPER_TYPES = getWrapperTypes();

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="[I" id="1927950199" length="1">
+  <object class="[I" id="1927950199" length="3">
     <value>1</value>
+    <value>2</value>
+    <value>3</value>
   </object>
-  <object class="source.ObjectC" id="2001049719">
+  <object class="source.ObjectC" id="1247233941">
     <field name="arr" declaringclass="source.ObjectC">
       <reference>1927950199</reference>
     </field>
