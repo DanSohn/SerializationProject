@@ -115,12 +115,29 @@ public class Deserializer {
             //check if non-array object, or if array object
             obj = null;
             if(classObject.isArray()){
+                System.out.println("Class object is an array!");
+                //get the elements
+                List classChildren = element.getChildren();
                 //array object
                 //find element type
                 Class componentType = classObject.getComponentType();
                 // size of array is an attribute of the object element
                 int length = Integer.parseInt(element.getAttributeValue("length"));
                 obj = Array.newInstance(componentType, length);
+                for(int i = 0; i < classChildren.size(); i++){
+                    Element arrChild = (Element) classChildren.get(i);
+                    String arrChildName = arrChild.getName();
+
+                    String trueVal = arrChild.getText();
+                    if(arrChildName.equals("value")){
+                        Object val = checkType(trueVal, componentType);
+                        Array.set(obj, i, val);
+                    }else if(arrChildName.equals("reference")){
+                        Object refObj = instanceID.get(Integer.parseInt(trueVal));
+                        Array.set(obj, i, refObj);
+                    }
+                }
+
             }else{
                 //non-array object
                 // utilizing the no args constructor by explicitly mentioning the no argument constructor
@@ -208,27 +225,4 @@ public class Deserializer {
         return elementArray;
     }
 
-    // past this point is code gotten from https://stackoverflow.com/questions/709961/determining-if-an-object-is-of-primitive-type
-    // that checks if an object is a wrapper for a primitive
-    private static final Set<Class<?>> WRAPPER_TYPES = getWrapperTypes();
-
-    public static boolean isWrapperType(Class<?> clazz)
-    {
-        return WRAPPER_TYPES.contains(clazz);
-    }
-
-    private static Set<Class<?>> getWrapperTypes()
-    {
-        Set<Class<?>> ret = new HashSet<Class<?>>();
-        ret.add(Boolean.class);
-        ret.add(Character.class);
-        ret.add(Byte.class);
-        ret.add(Short.class);
-        ret.add(Integer.class);
-        ret.add(Long.class);
-        ret.add(Float.class);
-        ret.add(Double.class);
-        ret.add(Void.class);
-        return ret;
-    }
 }

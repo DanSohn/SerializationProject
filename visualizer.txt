@@ -1,8 +1,8 @@
 ======================================================
 Filename: visualizer.txt
-Running Test: source.ObjectB@238e0d81
+Running Test: source.ObjectE@1d56ce6a
 Recursive: true
-CLASS: source.ObjectB
+CLASS: source.ObjectE
 	SUPERCLASS: java.lang.Object
 		CLASS: java.lang.Object
 			** NO SUPERINTERFACE **
@@ -85,49 +85,680 @@ CLASS: source.ObjectB
 			** NO FIELDS **
 	** NO SUPERINTERFACE **
 	CONSTRUCTOR:
-		Name: source.ObjectB
+		Name: source.ObjectE
 		Parameter Types: None
 		Modifier: public
-	CONSTRUCTOR:
-		Name: source.ObjectB
-		Parameter Types: int float boolean double 
+	METHOD:
+		Name: set
+		Exception Types: None
+		Parameter Types: source.ObjectA 
+		Return Type: void
 		Modifier: public
-	** NO METHODS **
 	FIELD: 
-		Name: obj
-		Modifier: public
-		CLASS: source.ObjectA
-			SUPERCLASS: java.lang.Object
-				CLASS: java.lang.Object
-					** NO SUPERINTERFACE **
+		Name: arrayList
+		Modifier: 
+		CLASS: java.util.ArrayList
+			SUPERCLASS: java.util.AbstractList
+				CLASS: java.util.AbstractList
+					SUPERCLASS: java.util.AbstractCollection
+						CLASS: java.util.AbstractCollection
+							SUPERCLASS: java.lang.Object
+								CLASS: java.lang.Object
+									** NO SUPERINTERFACE **
+									CONSTRUCTOR:
+										Name: java.lang.Object
+										Parameter Types: None
+										Modifier: public
+									METHOD:
+										Name: finalize
+										Exception Types: java.lang.Throwable 
+										Parameter Types: None
+										Return Type: void
+										Modifier: protected
+									METHOD:
+										Name: wait
+										Exception Types: java.lang.InterruptedException 
+										Parameter Types: None
+										Return Type: void
+										Modifier: public final
+									METHOD:
+										Name: wait
+										Exception Types: java.lang.InterruptedException 
+										Parameter Types: long int 
+										Return Type: void
+										Modifier: public final
+									METHOD:
+										Name: wait
+										Exception Types: java.lang.InterruptedException 
+										Parameter Types: long 
+										Return Type: void
+										Modifier: public final native
+									METHOD:
+										Name: equals
+										Exception Types: None
+										Parameter Types: java.lang.Object 
+										Return Type: boolean
+										Modifier: public
+									METHOD:
+										Name: toString
+										Exception Types: None
+										Parameter Types: None
+										Return Type: java.lang.String
+										Modifier: public
+									METHOD:
+										Name: hashCode
+										Exception Types: None
+										Parameter Types: None
+										Return Type: int
+										Modifier: public native
+									METHOD:
+										Name: getClass
+										Exception Types: None
+										Parameter Types: None
+										Return Type: java.lang.Class
+										Modifier: public final native
+									METHOD:
+										Name: clone
+										Exception Types: java.lang.CloneNotSupportedException 
+										Parameter Types: None
+										Return Type: java.lang.Object
+										Modifier: protected native
+									METHOD:
+										Name: notify
+										Exception Types: None
+										Parameter Types: None
+										Return Type: void
+										Modifier: public final native
+									METHOD:
+										Name: notifyAll
+										Exception Types: None
+										Parameter Types: None
+										Return Type: void
+										Modifier: public final native
+									METHOD:
+										Name: registerNatives
+										Exception Types: None
+										Parameter Types: None
+										Return Type: void
+										Modifier: private static native
+									** NO FIELDS **
+							INTERFACE: java.util.Collection
+								INTERFACE: java.lang.Iterable
+									** NO SUPERINTERFACE **
+									METHOD:
+										Name: iterator
+										Exception Types: None
+										Parameter Types: None
+										Return Type: java.util.Iterator
+										Modifier: public abstract
+									METHOD:
+										Name: spliterator
+										Exception Types: None
+										Parameter Types: None
+										Return Type: java.util.Spliterator
+										Modifier: public
+									METHOD:
+										Name: forEach
+										Exception Types: None
+										Parameter Types: java.util.function.Consumer 
+										Return Type: void
+										Modifier: public
+									** NO FIELDS **
+								METHOD:
+									Name: add
+									Exception Types: None
+									Parameter Types: java.lang.Object 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: remove
+									Exception Types: None
+									Parameter Types: java.lang.Object 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: equals
+									Exception Types: None
+									Parameter Types: java.lang.Object 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: hashCode
+									Exception Types: None
+									Parameter Types: None
+									Return Type: int
+									Modifier: public abstract
+								METHOD:
+									Name: clear
+									Exception Types: None
+									Parameter Types: None
+									Return Type: void
+									Modifier: public abstract
+								METHOD:
+									Name: contains
+									Exception Types: None
+									Parameter Types: java.lang.Object 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: isEmpty
+									Exception Types: None
+									Parameter Types: None
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: iterator
+									Exception Types: None
+									Parameter Types: None
+									Return Type: java.util.Iterator
+									Modifier: public abstract
+								METHOD:
+									Name: size
+									Exception Types: None
+									Parameter Types: None
+									Return Type: int
+									Modifier: public abstract
+								METHOD:
+									Name: toArray
+									Exception Types: None
+									Parameter Types: [Ljava.lang.Object; 
+									Return Type: [Ljava.lang.Object;
+									Modifier: public abstract
+								METHOD:
+									Name: toArray
+									Exception Types: None
+									Parameter Types: None
+									Return Type: [Ljava.lang.Object;
+									Modifier: public abstract
+								METHOD:
+									Name: spliterator
+									Exception Types: None
+									Parameter Types: None
+									Return Type: java.util.Spliterator
+									Modifier: public
+								METHOD:
+									Name: addAll
+									Exception Types: None
+									Parameter Types: java.util.Collection 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: stream
+									Exception Types: None
+									Parameter Types: None
+									Return Type: java.util.stream.Stream
+									Modifier: public
+								METHOD:
+									Name: containsAll
+									Exception Types: None
+									Parameter Types: java.util.Collection 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: removeAll
+									Exception Types: None
+									Parameter Types: java.util.Collection 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: removeIf
+									Exception Types: None
+									Parameter Types: java.util.function.Predicate 
+									Return Type: boolean
+									Modifier: public
+								METHOD:
+									Name: retainAll
+									Exception Types: None
+									Parameter Types: java.util.Collection 
+									Return Type: boolean
+									Modifier: public abstract
+								METHOD:
+									Name: parallelStream
+									Exception Types: None
+									Parameter Types: None
+									Return Type: java.util.stream.Stream
+									Modifier: public
+								** NO FIELDS **
+							CONSTRUCTOR:
+								Name: java.util.AbstractCollection
+								Parameter Types: None
+								Modifier: protected
+							METHOD:
+								Name: add
+								Exception Types: None
+								Parameter Types: java.lang.Object 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: remove
+								Exception Types: None
+								Parameter Types: java.lang.Object 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: toString
+								Exception Types: None
+								Parameter Types: None
+								Return Type: java.lang.String
+								Modifier: public
+							METHOD:
+								Name: clear
+								Exception Types: None
+								Parameter Types: None
+								Return Type: void
+								Modifier: public
+							METHOD:
+								Name: contains
+								Exception Types: None
+								Parameter Types: java.lang.Object 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: isEmpty
+								Exception Types: None
+								Parameter Types: None
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: iterator
+								Exception Types: None
+								Parameter Types: None
+								Return Type: java.util.Iterator
+								Modifier: public abstract
+							METHOD:
+								Name: size
+								Exception Types: None
+								Parameter Types: None
+								Return Type: int
+								Modifier: public abstract
+							METHOD:
+								Name: toArray
+								Exception Types: None
+								Parameter Types: [Ljava.lang.Object; 
+								Return Type: [Ljava.lang.Object;
+								Modifier: public
+							METHOD:
+								Name: toArray
+								Exception Types: None
+								Parameter Types: None
+								Return Type: [Ljava.lang.Object;
+								Modifier: public
+							METHOD:
+								Name: addAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: hugeCapacity
+								Exception Types: None
+								Parameter Types: int 
+								Return Type: int
+								Modifier: private static
+							METHOD:
+								Name: containsAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: removeAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: retainAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: finishToArray
+								Exception Types: None
+								Parameter Types: [Ljava.lang.Object; java.util.Iterator 
+								Return Type: [Ljava.lang.Object;
+								Modifier: private static
+							FIELD: 
+								Name: MAX_ARRAY_SIZE
+								Type: int
+								Modifier: private static final
+								Value: 2147483639
+					INTERFACE: java.util.List
+						INTERFACE: java.util.Collection
+							INTERFACE: java.lang.Iterable
+								** NO SUPERINTERFACE **
+								METHOD:
+									Name: iterator
+									Exception Types: None
+									Parameter Types: None
+									Return Type: java.util.Iterator
+									Modifier: public abstract
+								METHOD:
+									Name: spliterator
+									Exception Types: None
+									Parameter Types: None
+									Return Type: java.util.Spliterator
+									Modifier: public
+								METHOD:
+									Name: forEach
+									Exception Types: None
+									Parameter Types: java.util.function.Consumer 
+									Return Type: void
+									Modifier: public
+								** NO FIELDS **
+							METHOD:
+								Name: add
+								Exception Types: None
+								Parameter Types: java.lang.Object 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: remove
+								Exception Types: None
+								Parameter Types: java.lang.Object 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: equals
+								Exception Types: None
+								Parameter Types: java.lang.Object 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: hashCode
+								Exception Types: None
+								Parameter Types: None
+								Return Type: int
+								Modifier: public abstract
+							METHOD:
+								Name: clear
+								Exception Types: None
+								Parameter Types: None
+								Return Type: void
+								Modifier: public abstract
+							METHOD:
+								Name: contains
+								Exception Types: None
+								Parameter Types: java.lang.Object 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: isEmpty
+								Exception Types: None
+								Parameter Types: None
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: iterator
+								Exception Types: None
+								Parameter Types: None
+								Return Type: java.util.Iterator
+								Modifier: public abstract
+							METHOD:
+								Name: size
+								Exception Types: None
+								Parameter Types: None
+								Return Type: int
+								Modifier: public abstract
+							METHOD:
+								Name: toArray
+								Exception Types: None
+								Parameter Types: [Ljava.lang.Object; 
+								Return Type: [Ljava.lang.Object;
+								Modifier: public abstract
+							METHOD:
+								Name: toArray
+								Exception Types: None
+								Parameter Types: None
+								Return Type: [Ljava.lang.Object;
+								Modifier: public abstract
+							METHOD:
+								Name: spliterator
+								Exception Types: None
+								Parameter Types: None
+								Return Type: java.util.Spliterator
+								Modifier: public
+							METHOD:
+								Name: addAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: stream
+								Exception Types: None
+								Parameter Types: None
+								Return Type: java.util.stream.Stream
+								Modifier: public
+							METHOD:
+								Name: containsAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: removeAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: removeIf
+								Exception Types: None
+								Parameter Types: java.util.function.Predicate 
+								Return Type: boolean
+								Modifier: public
+							METHOD:
+								Name: retainAll
+								Exception Types: None
+								Parameter Types: java.util.Collection 
+								Return Type: boolean
+								Modifier: public abstract
+							METHOD:
+								Name: parallelStream
+								Exception Types: None
+								Parameter Types: None
+								Return Type: java.util.stream.Stream
+								Modifier: public
+							** NO FIELDS **
+						METHOD:
+							Name: add
+							Exception Types: None
+							Parameter Types: java.lang.Object 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: add
+							Exception Types: None
+							Parameter Types: int java.lang.Object 
+							Return Type: void
+							Modifier: public abstract
+						METHOD:
+							Name: remove
+							Exception Types: None
+							Parameter Types: int 
+							Return Type: java.lang.Object
+							Modifier: public abstract
+						METHOD:
+							Name: remove
+							Exception Types: None
+							Parameter Types: java.lang.Object 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: get
+							Exception Types: None
+							Parameter Types: int 
+							Return Type: java.lang.Object
+							Modifier: public abstract
+						METHOD:
+							Name: equals
+							Exception Types: None
+							Parameter Types: java.lang.Object 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: hashCode
+							Exception Types: None
+							Parameter Types: None
+							Return Type: int
+							Modifier: public abstract
+						METHOD:
+							Name: indexOf
+							Exception Types: None
+							Parameter Types: java.lang.Object 
+							Return Type: int
+							Modifier: public abstract
+						METHOD:
+							Name: clear
+							Exception Types: None
+							Parameter Types: None
+							Return Type: void
+							Modifier: public abstract
+						METHOD:
+							Name: contains
+							Exception Types: None
+							Parameter Types: java.lang.Object 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: isEmpty
+							Exception Types: None
+							Parameter Types: None
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: iterator
+							Exception Types: None
+							Parameter Types: None
+							Return Type: java.util.Iterator
+							Modifier: public abstract
+						METHOD:
+							Name: lastIndexOf
+							Exception Types: None
+							Parameter Types: java.lang.Object 
+							Return Type: int
+							Modifier: public abstract
+						METHOD:
+							Name: replaceAll
+							Exception Types: None
+							Parameter Types: java.util.function.UnaryOperator 
+							Return Type: void
+							Modifier: public
+						METHOD:
+							Name: size
+							Exception Types: None
+							Parameter Types: None
+							Return Type: int
+							Modifier: public abstract
+						METHOD:
+							Name: subList
+							Exception Types: None
+							Parameter Types: int int 
+							Return Type: java.util.List
+							Modifier: public abstract
+						METHOD:
+							Name: toArray
+							Exception Types: None
+							Parameter Types: None
+							Return Type: [Ljava.lang.Object;
+							Modifier: public abstract
+						METHOD:
+							Name: toArray
+							Exception Types: None
+							Parameter Types: [Ljava.lang.Object; 
+							Return Type: [Ljava.lang.Object;
+							Modifier: public abstract
+						METHOD:
+							Name: spliterator
+							Exception Types: None
+							Parameter Types: None
+							Return Type: java.util.Spliterator
+							Modifier: public
+						METHOD:
+							Name: addAll
+							Exception Types: None
+							Parameter Types: java.util.Collection 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: addAll
+							Exception Types: None
+							Parameter Types: int java.util.Collection 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: set
+							Exception Types: None
+							Parameter Types: int java.lang.Object 
+							Return Type: java.lang.Object
+							Modifier: public abstract
+						METHOD:
+							Name: containsAll
+							Exception Types: None
+							Parameter Types: java.util.Collection 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: listIterator
+							Exception Types: None
+							Parameter Types: int 
+							Return Type: java.util.ListIterator
+							Modifier: public abstract
+						METHOD:
+							Name: listIterator
+							Exception Types: None
+							Parameter Types: None
+							Return Type: java.util.ListIterator
+							Modifier: public abstract
+						METHOD:
+							Name: removeAll
+							Exception Types: None
+							Parameter Types: java.util.Collection 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: retainAll
+							Exception Types: None
+							Parameter Types: java.util.Collection 
+							Return Type: boolean
+							Modifier: public abstract
+						METHOD:
+							Name: sort
+							Exception Types: None
+							Parameter Types: java.util.Comparator 
+							Return Type: void
+							Modifier: public
+						** NO FIELDS **
 					CONSTRUCTOR:
-						Name: java.lang.Object
+						Name: java.util.AbstractList
 						Parameter Types: None
-						Modifier: public
-					METHOD:
-						Name: finalize
-						Exception Types: java.lang.Throwable 
-						Parameter Types: None
-						Return Type: void
 						Modifier: protected
 					METHOD:
-						Name: wait
-						Exception Types: java.lang.InterruptedException 
-						Parameter Types: None
+						Name: add
+						Exception Types: None
+						Parameter Types: int java.lang.Object 
 						Return Type: void
-						Modifier: public final
+						Modifier: public
 					METHOD:
-						Name: wait
-						Exception Types: java.lang.InterruptedException 
-						Parameter Types: long int 
-						Return Type: void
-						Modifier: public final
+						Name: add
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: boolean
+						Modifier: public
 					METHOD:
-						Name: wait
-						Exception Types: java.lang.InterruptedException 
-						Parameter Types: long 
-						Return Type: void
-						Modifier: public final native
+						Name: remove
+						Exception Types: None
+						Parameter Types: int 
+						Return Type: java.lang.Object
+						Modifier: public
+					METHOD:
+						Name: get
+						Exception Types: None
+						Parameter Types: int 
+						Return Type: java.lang.Object
+						Modifier: public abstract
 					METHOD:
 						Name: equals
 						Exception Types: None
@@ -135,76 +766,734 @@ CLASS: source.ObjectB
 						Return Type: boolean
 						Modifier: public
 					METHOD:
-						Name: toString
+						Name: hashCode
 						Exception Types: None
 						Parameter Types: None
-						Return Type: java.lang.String
+						Return Type: int
 						Modifier: public
+					METHOD:
+						Name: indexOf
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: int
+						Modifier: public
+					METHOD:
+						Name: clear
+						Exception Types: None
+						Parameter Types: None
+						Return Type: void
+						Modifier: public
+					METHOD:
+						Name: iterator
+						Exception Types: None
+						Parameter Types: None
+						Return Type: java.util.Iterator
+						Modifier: public
+					METHOD:
+						Name: lastIndexOf
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: int
+						Modifier: public
+					METHOD:
+						Name: subList
+						Exception Types: None
+						Parameter Types: int int 
+						Return Type: java.util.List
+						Modifier: public
+					METHOD:
+						Name: addAll
+						Exception Types: None
+						Parameter Types: int java.util.Collection 
+						Return Type: boolean
+						Modifier: public
+					METHOD:
+						Name: set
+						Exception Types: None
+						Parameter Types: int java.lang.Object 
+						Return Type: java.lang.Object
+						Modifier: public
+					METHOD:
+						Name: listIterator
+						Exception Types: None
+						Parameter Types: int 
+						Return Type: java.util.ListIterator
+						Modifier: public
+					METHOD:
+						Name: listIterator
+						Exception Types: None
+						Parameter Types: None
+						Return Type: java.util.ListIterator
+						Modifier: public
+					METHOD:
+						Name: removeRange
+						Exception Types: None
+						Parameter Types: int int 
+						Return Type: void
+						Modifier: protected
+					METHOD:
+						Name: outOfBoundsMsg
+						Exception Types: None
+						Parameter Types: int 
+						Return Type: java.lang.String
+						Modifier: private
+					METHOD:
+						Name: rangeCheckForAdd
+						Exception Types: None
+						Parameter Types: int 
+						Return Type: void
+						Modifier: private
+					FIELD: 
+						Name: modCount
+						Type: int
+						Modifier: protected transient
+						Value: 0
+			INTERFACE: java.util.List
+				INTERFACE: java.util.Collection
+					INTERFACE: java.lang.Iterable
+						** NO SUPERINTERFACE **
+						METHOD:
+							Name: iterator
+							Exception Types: None
+							Parameter Types: None
+							Return Type: java.util.Iterator
+							Modifier: public abstract
+						METHOD:
+							Name: spliterator
+							Exception Types: None
+							Parameter Types: None
+							Return Type: java.util.Spliterator
+							Modifier: public
+						METHOD:
+							Name: forEach
+							Exception Types: None
+							Parameter Types: java.util.function.Consumer 
+							Return Type: void
+							Modifier: public
+						** NO FIELDS **
+					METHOD:
+						Name: add
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: boolean
+						Modifier: public abstract
+					METHOD:
+						Name: remove
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: boolean
+						Modifier: public abstract
+					METHOD:
+						Name: equals
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: boolean
+						Modifier: public abstract
 					METHOD:
 						Name: hashCode
 						Exception Types: None
 						Parameter Types: None
 						Return Type: int
-						Modifier: public native
+						Modifier: public abstract
 					METHOD:
-						Name: getClass
-						Exception Types: None
-						Parameter Types: None
-						Return Type: java.lang.Class
-						Modifier: public final native
-					METHOD:
-						Name: clone
-						Exception Types: java.lang.CloneNotSupportedException 
-						Parameter Types: None
-						Return Type: java.lang.Object
-						Modifier: protected native
-					METHOD:
-						Name: notify
+						Name: clear
 						Exception Types: None
 						Parameter Types: None
 						Return Type: void
-						Modifier: public final native
+						Modifier: public abstract
 					METHOD:
-						Name: notifyAll
+						Name: contains
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: boolean
+						Modifier: public abstract
+					METHOD:
+						Name: isEmpty
 						Exception Types: None
 						Parameter Types: None
-						Return Type: void
-						Modifier: public final native
+						Return Type: boolean
+						Modifier: public abstract
 					METHOD:
-						Name: registerNatives
+						Name: iterator
 						Exception Types: None
 						Parameter Types: None
-						Return Type: void
-						Modifier: private static native
+						Return Type: java.util.Iterator
+						Modifier: public abstract
+					METHOD:
+						Name: size
+						Exception Types: None
+						Parameter Types: None
+						Return Type: int
+						Modifier: public abstract
+					METHOD:
+						Name: toArray
+						Exception Types: None
+						Parameter Types: [Ljava.lang.Object; 
+						Return Type: [Ljava.lang.Object;
+						Modifier: public abstract
+					METHOD:
+						Name: toArray
+						Exception Types: None
+						Parameter Types: None
+						Return Type: [Ljava.lang.Object;
+						Modifier: public abstract
+					METHOD:
+						Name: spliterator
+						Exception Types: None
+						Parameter Types: None
+						Return Type: java.util.Spliterator
+						Modifier: public
+					METHOD:
+						Name: addAll
+						Exception Types: None
+						Parameter Types: java.util.Collection 
+						Return Type: boolean
+						Modifier: public abstract
+					METHOD:
+						Name: stream
+						Exception Types: None
+						Parameter Types: None
+						Return Type: java.util.stream.Stream
+						Modifier: public
+					METHOD:
+						Name: containsAll
+						Exception Types: None
+						Parameter Types: java.util.Collection 
+						Return Type: boolean
+						Modifier: public abstract
+					METHOD:
+						Name: removeAll
+						Exception Types: None
+						Parameter Types: java.util.Collection 
+						Return Type: boolean
+						Modifier: public abstract
+					METHOD:
+						Name: removeIf
+						Exception Types: None
+						Parameter Types: java.util.function.Predicate 
+						Return Type: boolean
+						Modifier: public
+					METHOD:
+						Name: retainAll
+						Exception Types: None
+						Parameter Types: java.util.Collection 
+						Return Type: boolean
+						Modifier: public abstract
+					METHOD:
+						Name: parallelStream
+						Exception Types: None
+						Parameter Types: None
+						Return Type: java.util.stream.Stream
+						Modifier: public
 					** NO FIELDS **
-			** NO SUPERINTERFACE **
+				METHOD:
+					Name: add
+					Exception Types: None
+					Parameter Types: java.lang.Object 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: add
+					Exception Types: None
+					Parameter Types: int java.lang.Object 
+					Return Type: void
+					Modifier: public abstract
+				METHOD:
+					Name: remove
+					Exception Types: None
+					Parameter Types: int 
+					Return Type: java.lang.Object
+					Modifier: public abstract
+				METHOD:
+					Name: remove
+					Exception Types: None
+					Parameter Types: java.lang.Object 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: get
+					Exception Types: None
+					Parameter Types: int 
+					Return Type: java.lang.Object
+					Modifier: public abstract
+				METHOD:
+					Name: equals
+					Exception Types: None
+					Parameter Types: java.lang.Object 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: hashCode
+					Exception Types: None
+					Parameter Types: None
+					Return Type: int
+					Modifier: public abstract
+				METHOD:
+					Name: indexOf
+					Exception Types: None
+					Parameter Types: java.lang.Object 
+					Return Type: int
+					Modifier: public abstract
+				METHOD:
+					Name: clear
+					Exception Types: None
+					Parameter Types: None
+					Return Type: void
+					Modifier: public abstract
+				METHOD:
+					Name: contains
+					Exception Types: None
+					Parameter Types: java.lang.Object 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: isEmpty
+					Exception Types: None
+					Parameter Types: None
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: iterator
+					Exception Types: None
+					Parameter Types: None
+					Return Type: java.util.Iterator
+					Modifier: public abstract
+				METHOD:
+					Name: lastIndexOf
+					Exception Types: None
+					Parameter Types: java.lang.Object 
+					Return Type: int
+					Modifier: public abstract
+				METHOD:
+					Name: replaceAll
+					Exception Types: None
+					Parameter Types: java.util.function.UnaryOperator 
+					Return Type: void
+					Modifier: public
+				METHOD:
+					Name: size
+					Exception Types: None
+					Parameter Types: None
+					Return Type: int
+					Modifier: public abstract
+				METHOD:
+					Name: subList
+					Exception Types: None
+					Parameter Types: int int 
+					Return Type: java.util.List
+					Modifier: public abstract
+				METHOD:
+					Name: toArray
+					Exception Types: None
+					Parameter Types: None
+					Return Type: [Ljava.lang.Object;
+					Modifier: public abstract
+				METHOD:
+					Name: toArray
+					Exception Types: None
+					Parameter Types: [Ljava.lang.Object; 
+					Return Type: [Ljava.lang.Object;
+					Modifier: public abstract
+				METHOD:
+					Name: spliterator
+					Exception Types: None
+					Parameter Types: None
+					Return Type: java.util.Spliterator
+					Modifier: public
+				METHOD:
+					Name: addAll
+					Exception Types: None
+					Parameter Types: java.util.Collection 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: addAll
+					Exception Types: None
+					Parameter Types: int java.util.Collection 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: set
+					Exception Types: None
+					Parameter Types: int java.lang.Object 
+					Return Type: java.lang.Object
+					Modifier: public abstract
+				METHOD:
+					Name: containsAll
+					Exception Types: None
+					Parameter Types: java.util.Collection 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: listIterator
+					Exception Types: None
+					Parameter Types: int 
+					Return Type: java.util.ListIterator
+					Modifier: public abstract
+				METHOD:
+					Name: listIterator
+					Exception Types: None
+					Parameter Types: None
+					Return Type: java.util.ListIterator
+					Modifier: public abstract
+				METHOD:
+					Name: removeAll
+					Exception Types: None
+					Parameter Types: java.util.Collection 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: retainAll
+					Exception Types: None
+					Parameter Types: java.util.Collection 
+					Return Type: boolean
+					Modifier: public abstract
+				METHOD:
+					Name: sort
+					Exception Types: None
+					Parameter Types: java.util.Comparator 
+					Return Type: void
+					Modifier: public
+				** NO FIELDS **
+			INTERFACE: java.util.RandomAccess
+				** NO SUPERINTERFACE **
+				** NO METHODS **
+				** NO FIELDS **
+			INTERFACE: java.lang.Cloneable
+				** NO SUPERINTERFACE **
+				** NO METHODS **
+				** NO FIELDS **
+			INTERFACE: java.io.Serializable
+				** NO SUPERINTERFACE **
+				** NO METHODS **
+				** NO FIELDS **
 			CONSTRUCTOR:
-				Name: source.ObjectA
+				Name: java.util.ArrayList
+				Parameter Types: java.util.Collection 
+				Modifier: public
+			CONSTRUCTOR:
+				Name: java.util.ArrayList
 				Parameter Types: None
 				Modifier: public
 			CONSTRUCTOR:
-				Name: source.ObjectA
-				Parameter Types: int float boolean double 
+				Name: java.util.ArrayList
+				Parameter Types: int 
 				Modifier: public
-			** NO METHODS **
+			METHOD:
+				Name: add
+				Exception Types: None
+				Parameter Types: java.lang.Object 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: add
+				Exception Types: None
+				Parameter Types: int java.lang.Object 
+				Return Type: void
+				Modifier: public
+			METHOD:
+				Name: remove
+				Exception Types: None
+				Parameter Types: java.lang.Object 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: remove
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: java.lang.Object
+				Modifier: public
+			METHOD:
+				Name: get
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: java.lang.Object
+				Modifier: public
+			METHOD:
+				Name: clone
+				Exception Types: None
+				Parameter Types: None
+				Return Type: java.lang.Object
+				Modifier: public
+			METHOD:
+				Name: indexOf
+				Exception Types: None
+				Parameter Types: java.lang.Object 
+				Return Type: int
+				Modifier: public
+			METHOD:
+				Name: clear
+				Exception Types: None
+				Parameter Types: None
+				Return Type: void
+				Modifier: public
+			METHOD:
+				Name: contains
+				Exception Types: None
+				Parameter Types: java.lang.Object 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: isEmpty
+				Exception Types: None
+				Parameter Types: None
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: iterator
+				Exception Types: None
+				Parameter Types: None
+				Return Type: java.util.Iterator
+				Modifier: public
+			METHOD:
+				Name: lastIndexOf
+				Exception Types: None
+				Parameter Types: java.lang.Object 
+				Return Type: int
+				Modifier: public
+			METHOD:
+				Name: replaceAll
+				Exception Types: None
+				Parameter Types: java.util.function.UnaryOperator 
+				Return Type: void
+				Modifier: public
+			METHOD:
+				Name: size
+				Exception Types: None
+				Parameter Types: None
+				Return Type: int
+				Modifier: public
+			METHOD:
+				Name: subList
+				Exception Types: None
+				Parameter Types: int int 
+				Return Type: java.util.List
+				Modifier: public
+			METHOD:
+				Name: toArray
+				Exception Types: None
+				Parameter Types: [Ljava.lang.Object; 
+				Return Type: [Ljava.lang.Object;
+				Modifier: public
+			METHOD:
+				Name: toArray
+				Exception Types: None
+				Parameter Types: None
+				Return Type: [Ljava.lang.Object;
+				Modifier: public
+			METHOD:
+				Name: spliterator
+				Exception Types: None
+				Parameter Types: None
+				Return Type: java.util.Spliterator
+				Modifier: public
+			METHOD:
+				Name: access$100
+				Exception Types: None
+				Parameter Types: java.util.ArrayList 
+				Return Type: int
+				Modifier: static
+			METHOD:
+				Name: addAll
+				Exception Types: None
+				Parameter Types: int java.util.Collection 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: addAll
+				Exception Types: None
+				Parameter Types: java.util.Collection 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: readObject
+				Exception Types: java.io.IOException java.lang.ClassNotFoundException 
+				Parameter Types: java.io.ObjectInputStream 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: writeObject
+				Exception Types: java.io.IOException 
+				Parameter Types: java.io.ObjectOutputStream 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: forEach
+				Exception Types: None
+				Parameter Types: java.util.function.Consumer 
+				Return Type: void
+				Modifier: public
+			METHOD:
+				Name: set
+				Exception Types: None
+				Parameter Types: int java.lang.Object 
+				Return Type: java.lang.Object
+				Modifier: public
+			METHOD:
+				Name: ensureCapacity
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: void
+				Modifier: public
+			METHOD:
+				Name: trimToSize
+				Exception Types: None
+				Parameter Types: None
+				Return Type: void
+				Modifier: public
+			METHOD:
+				Name: ensureCapacityInternal
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: hugeCapacity
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: int
+				Modifier: private static
+			METHOD:
+				Name: elementData
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: java.lang.Object
+				Modifier: 
+			METHOD:
+				Name: grow
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: listIterator
+				Exception Types: None
+				Parameter Types: None
+				Return Type: java.util.ListIterator
+				Modifier: public
+			METHOD:
+				Name: listIterator
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: java.util.ListIterator
+				Modifier: public
+			METHOD:
+				Name: removeAll
+				Exception Types: None
+				Parameter Types: java.util.Collection 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: removeIf
+				Exception Types: None
+				Parameter Types: java.util.function.Predicate 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: removeRange
+				Exception Types: None
+				Parameter Types: int int 
+				Return Type: void
+				Modifier: protected
+			METHOD:
+				Name: retainAll
+				Exception Types: None
+				Parameter Types: java.util.Collection 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: sort
+				Exception Types: None
+				Parameter Types: java.util.Comparator 
+				Return Type: void
+				Modifier: public
+			METHOD:
+				Name: outOfBoundsMsg
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: java.lang.String
+				Modifier: private
+			METHOD:
+				Name: rangeCheckForAdd
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: batchRemove
+				Exception Types: None
+				Parameter Types: java.util.Collection boolean 
+				Return Type: boolean
+				Modifier: private
+			METHOD:
+				Name: ensureExplicitCapacity
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: fastRemove
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: rangeCheck
+				Exception Types: None
+				Parameter Types: int 
+				Return Type: void
+				Modifier: private
+			METHOD:
+				Name: subListRangeCheck
+				Exception Types: None
+				Parameter Types: int int int 
+				Return Type: void
+				Modifier: static
 			FIELD: 
-				Name: A
+				Name: serialVersionUID
+				Type: long
+				Modifier: private static final
+				Value: 8683452581122892189
+			FIELD: 
+				Name: DEFAULT_CAPACITY
 				Type: int
-				Modifier: public
-				Value: 2
+				Modifier: private static final
+				Value: 10
 			FIELD: 
-				Name: B
-				Type: float
-				Modifier: public
-				Value: 2.1
+				Name: EMPTY_ELEMENTDATA
+				Type: class java.lang.Object[]
+				Modifier: private static final
+				Value: 
+					Type: class java.lang.Object
+					Length: 0
+					Contents: [
+					]
 			FIELD: 
-				Name: C
-				Type: boolean
+				Name: DEFAULTCAPACITY_EMPTY_ELEMENTDATA
+				Type: class java.lang.Object[]
+				Modifier: private static final
+				Value: 
+					Type: class java.lang.Object
+					Length: 0
+					Contents: [
+					]
+			FIELD: 
+				Name: elementData
+				Type: class java.lang.Object[]
+				Modifier: transient
+				Value: 
+					Type: class java.lang.Object
+					Length: 0
+					Contents: [
+					]
+			FIELD: 
+				Name: size
+				Type: int
 				Modifier: private
-				Value: false
+				Value: 0
 			FIELD: 
-				Name: D
-				Type: double
-				Modifier: private
-				Value: 2.2
+				Name: MAX_ARRAY_SIZE
+				Type: int
+				Modifier: private static final
+				Value: 2147483639
 ======================================================
