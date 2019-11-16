@@ -69,7 +69,7 @@ public class Deserializer {
         outputObject(docObject, recursive);
     }
 
-    public static void outputObject(Object testObj, boolean recursive) throws Exception{
+    private static void outputObject(Object testObj, boolean recursive) throws Exception{
         String filename = "visualizer.txt";
         try {
             PrintStream old = System.out;
@@ -96,7 +96,7 @@ public class Deserializer {
         }
 
     }
-    public static Object deserialize(org.jdom2.Document doc) throws Exception {
+    private static Object deserialize(org.jdom2.Document doc) throws Exception {
 
 
         Element[] elements = ElementChildren(doc.getRootElement());
@@ -204,7 +204,7 @@ public class Deserializer {
     }
 
 
-    public static Object checkType(String value, Class fieldType){
+    static Object checkType(String value, Class fieldType){
         Object val = null;
         if (fieldType.equals(int.class)){
             val = Integer.parseInt(value);
@@ -218,7 +218,7 @@ public class Deserializer {
         return val;
     }
 
-    public static Element[] ElementChildren(Element root){
+    private static Element[] ElementChildren(Element root){
         List<Element> elementList =  root.getChildren();
         Element[] elementArray = new Element[elementList.size()];
         elementArray = elementList.toArray(elementArray);
