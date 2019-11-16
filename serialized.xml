@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="source.ObjectA" id="1746572565">
-    <field name="A" declaringclass="source.ObjectA">
-      <value>1</value>
-    </field>
-    <field name="B" declaringclass="source.ObjectA">
-      <value>1.1</value>
-    </field>
-    <field name="C" declaringclass="source.ObjectA">
-      <value>false</value>
-    </field>
-    <field name="D" declaringclass="source.ObjectA">
-      <value>1.2</value>
-    </field>
+  <object class="[I" id="1927950199" length="1">
+    <value>1</value>
   </object>
-  <object class="java.util.ArrayList" id="1927950199" length="1">
-    <reference>1746572565</reference>
-  </object>
-  <object class="source.ObjectE" id="2001049719">
-    <field name="arrayList" declaringclass="source.ObjectE" />
+  <object class="source.ObjectC" id="2001049719">
+    <field name="arr" declaringclass="source.ObjectC">
+      <reference>1927950199</reference>
+    </field>
   </object>
 </serialized>

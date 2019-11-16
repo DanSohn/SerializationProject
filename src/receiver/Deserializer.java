@@ -70,7 +70,7 @@ public class Deserializer {
     }
 
     public static void outputObject(Object testObj, boolean recursive) throws Exception{
-        String filename = "out/Objects/visualizer.txt";
+        String filename = "visualizer.txt";
         try {
             PrintStream old = System.out;
             File file = new File(filename);
@@ -108,6 +108,7 @@ public class Deserializer {
         // for each object element in the xml document, find the class name and create instance of the class
         for(Element element: elements){
             String className = element.getAttributeValue("class");
+            System.out.println("Class name: " + className);
             //class object for the element object
             Class classObject = Class.forName(className);
 
@@ -137,12 +138,13 @@ public class Deserializer {
             //get list of all child elements. each child is a field of the object
             Element[] children = ElementChildren(element);
 
-            //iterate through each field in the list
+            //iterate through each FIELD in the OBJECT LIST
             for(Element child:children){
-                // if the child is not a field, but rather a reference (occurs for object E)
-                if(child.getName().equals("reference")){
-                    Integer referenceID = Integer.parseInt(child.getText());
+                System.out.println("Child: " + child.getName());
 
+                // under assumption that we don't do arrays, I skip array children
+                if(!child.getName().equals("field")){
+                    break;
                 }
                 //find name of its declaring class
                 String declaringClass = child.getAttributeValue("declaringclass");
@@ -156,14 +158,23 @@ public class Deserializer {
                 field.setAccessible(true);
                 //store field's type
                 Class fieldType = field.getType();
+
+
                 //initialize value of field using set()
-                if(fieldType.isPrimitive() || isWrapperType(fieldType)){
-                    String value = child.getText();
+                //if(fieldType.isPrimitive() || isWrapperType(fieldType)){
+                if(child.getChild("value") != null){
+                    String value = child.getChild("value").getText();
+                    System.out.println(value);
+                    System.out.println(fieldName);
+                    System.out.println(fieldType.toString());
                     // since i don't know the actual field type, I cast the value (received as a string) into its actual class
-                    Object val = fieldType.cast(value);
+                    //Object val = fieldType.cast(value);
+                    Object val = checkType(value, fieldType);
+
+
                     field.set(obj, val);
                 }else{
-                    Integer refID = Integer.parseInt(child.getText());
+                    Integer refID = Integer.parseInt(child.getChild("reference").getText());
                     Object refObj = instanceID.get(refID);
                     field.set(obj, refObj);
                 }
@@ -173,6 +184,21 @@ public class Deserializer {
 
 
         return obj;
+    }
+
+
+    public static Object checkType(String value, Class fieldType){
+        Object val = null;
+        if (fieldType.equals(int.class)){
+            val = Integer.parseInt(value);
+        }else if(fieldType.equals(float.class)){
+            val = Float.parseFloat(value);
+        }else if(fieldType.equals(boolean.class)){
+            val = Boolean.parseBoolean(value);
+        }else if(fieldType.equals(double.class)){
+            val = Double.parseDouble(value);
+        }
+        return val;
     }
 
     public static Element[] ElementChildren(Element root){

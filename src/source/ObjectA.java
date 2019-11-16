@@ -12,7 +12,6 @@ public class ObjectA{
     private double D;
 
     public ObjectA(){
-
     }
     public ObjectA(int A, float B, boolean C, double D){
         this.A = A;

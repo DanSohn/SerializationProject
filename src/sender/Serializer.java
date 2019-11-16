@@ -69,7 +69,7 @@ public class Serializer {
     public static Element[] serializeObject(Object obj) throws Exception{
         ArrayList<Element> myElements = new ArrayList<Element>();
         Class classObj = obj.getClass();
-        // object element
+        // object element, my main object
         Element objEle = new Element("object");
         objEle.setAttribute("class", classObj.getName());
         objEle.setAttribute("id", String.valueOf(obj.hashCode()));
@@ -96,7 +96,12 @@ public class Serializer {
                 fieldEle.addContent(fieldVal);
                 objEle.addContent(fieldEle);
             }else if(fieldType.isArray() || fieldType.equals(ArrayList.class)){
+                System.out.println("Field type is array: " + field.getName());
                 // add field element to object element
+                // need to add a reference tag from the actual array to this
+                Element refVal = createRefEle(value);
+                fieldEle.addContent(refVal);
+
                 objEle.addContent(fieldEle);
                 // if the field type is an arraylist, i need to convert to array first to do the array functions
                 if (field.getType().equals(ArrayList.class)){
@@ -104,8 +109,8 @@ public class Serializer {
                     value = ((ArrayList) value).toArray();
                 }
 
-                Class componentType = value.getClass();
-                System.out.println(fieldType);
+                Class componentType = fieldType.getComponentType();
+                //System.out.println(fieldType);
                 System.out.println(componentType);
                 //array
                 Element arrayEle = createArrayEle(fieldType, value);
@@ -124,12 +129,12 @@ public class Serializer {
                 }else{
                     //reference - gets the object from array, finds the object's hash code and prints it out
                     for(int i = 0; i < length; i++) {
-                        fieldVal = new Element("reference");
+                        Element refTag = new Element("reference");
                         // reference the object's identity hash code
                         Object refObj = Array.get(value, i);
                         int objHashCode = refObj.hashCode();
-                        fieldVal.addContent(String.valueOf(objHashCode));
-                        arrayEle.addContent(fieldVal);
+                        refTag.addContent(String.valueOf(objHashCode));
+                        arrayEle.addContent(refTag);
 
                         //reference object recursively caling serializeObject, and then passing it back to serialize
                         Element[] els = serializeObject(refObj);
@@ -142,12 +147,10 @@ public class Serializer {
 
                 // add array element to root element
                 myElements.add(arrayEle);
-            }else{
-                //non array object
-                Element fieldVal = new Element("reference");
-                Object refObjCode = value.hashCode();
-                fieldVal.addContent(String.valueOf(refObjCode));
-                fieldEle.addContent(fieldVal);
+            }else{ //non array object
+                Element RefVal = createRefEle(value);
+
+                fieldEle.addContent(RefVal);
                 // add field element to object element
                 objEle.addContent(fieldEle);
 
@@ -166,7 +169,14 @@ public class Serializer {
         return arr;
     }
 
+    private static Element createRefEle(Object value){
+        Element RefVal = new Element("reference");
+        Object refObjCode = value.hashCode();
+        RefVal.addContent(String.valueOf(refObjCode));
 
+        return RefVal;
+
+    }
     private static Element createArrayEle(Class fieldType, Object value){
         Element arrEle = new Element("object");
         Class componentType = fieldType.getComponentType();

@@ -1,0 +1,210 @@
+======================================================
+Filename: visualizer.txt
+Running Test: source.ObjectB@238e0d81
+Recursive: true
+CLASS: source.ObjectB
+	SUPERCLASS: java.lang.Object
+		CLASS: java.lang.Object
+			** NO SUPERINTERFACE **
+			CONSTRUCTOR:
+				Name: java.lang.Object
+				Parameter Types: None
+				Modifier: public
+			METHOD:
+				Name: finalize
+				Exception Types: java.lang.Throwable 
+				Parameter Types: None
+				Return Type: void
+				Modifier: protected
+			METHOD:
+				Name: wait
+				Exception Types: java.lang.InterruptedException 
+				Parameter Types: None
+				Return Type: void
+				Modifier: public final
+			METHOD:
+				Name: wait
+				Exception Types: java.lang.InterruptedException 
+				Parameter Types: long int 
+				Return Type: void
+				Modifier: public final
+			METHOD:
+				Name: wait
+				Exception Types: java.lang.InterruptedException 
+				Parameter Types: long 
+				Return Type: void
+				Modifier: public final native
+			METHOD:
+				Name: equals
+				Exception Types: None
+				Parameter Types: java.lang.Object 
+				Return Type: boolean
+				Modifier: public
+			METHOD:
+				Name: toString
+				Exception Types: None
+				Parameter Types: None
+				Return Type: java.lang.String
+				Modifier: public
+			METHOD:
+				Name: hashCode
+				Exception Types: None
+				Parameter Types: None
+				Return Type: int
+				Modifier: public native
+			METHOD:
+				Name: getClass
+				Exception Types: None
+				Parameter Types: None
+				Return Type: java.lang.Class
+				Modifier: public final native
+			METHOD:
+				Name: clone
+				Exception Types: java.lang.CloneNotSupportedException 
+				Parameter Types: None
+				Return Type: java.lang.Object
+				Modifier: protected native
+			METHOD:
+				Name: notify
+				Exception Types: None
+				Parameter Types: None
+				Return Type: void
+				Modifier: public final native
+			METHOD:
+				Name: notifyAll
+				Exception Types: None
+				Parameter Types: None
+				Return Type: void
+				Modifier: public final native
+			METHOD:
+				Name: registerNatives
+				Exception Types: None
+				Parameter Types: None
+				Return Type: void
+				Modifier: private static native
+			** NO FIELDS **
+	** NO SUPERINTERFACE **
+	CONSTRUCTOR:
+		Name: source.ObjectB
+		Parameter Types: None
+		Modifier: public
+	CONSTRUCTOR:
+		Name: source.ObjectB
+		Parameter Types: int float boolean double 
+		Modifier: public
+	** NO METHODS **
+	FIELD: 
+		Name: obj
+		Modifier: public
+		CLASS: source.ObjectA
+			SUPERCLASS: java.lang.Object
+				CLASS: java.lang.Object
+					** NO SUPERINTERFACE **
+					CONSTRUCTOR:
+						Name: java.lang.Object
+						Parameter Types: None
+						Modifier: public
+					METHOD:
+						Name: finalize
+						Exception Types: java.lang.Throwable 
+						Parameter Types: None
+						Return Type: void
+						Modifier: protected
+					METHOD:
+						Name: wait
+						Exception Types: java.lang.InterruptedException 
+						Parameter Types: None
+						Return Type: void
+						Modifier: public final
+					METHOD:
+						Name: wait
+						Exception Types: java.lang.InterruptedException 
+						Parameter Types: long int 
+						Return Type: void
+						Modifier: public final
+					METHOD:
+						Name: wait
+						Exception Types: java.lang.InterruptedException 
+						Parameter Types: long 
+						Return Type: void
+						Modifier: public final native
+					METHOD:
+						Name: equals
+						Exception Types: None
+						Parameter Types: java.lang.Object 
+						Return Type: boolean
+						Modifier: public
+					METHOD:
+						Name: toString
+						Exception Types: None
+						Parameter Types: None
+						Return Type: java.lang.String
+						Modifier: public
+					METHOD:
+						Name: hashCode
+						Exception Types: None
+						Parameter Types: None
+						Return Type: int
+						Modifier: public native
+					METHOD:
+						Name: getClass
+						Exception Types: None
+						Parameter Types: None
+						Return Type: java.lang.Class
+						Modifier: public final native
+					METHOD:
+						Name: clone
+						Exception Types: java.lang.CloneNotSupportedException 
+						Parameter Types: None
+						Return Type: java.lang.Object
+						Modifier: protected native
+					METHOD:
+						Name: notify
+						Exception Types: None
+						Parameter Types: None
+						Return Type: void
+						Modifier: public final native
+					METHOD:
+						Name: notifyAll
+						Exception Types: None
+						Parameter Types: None
+						Return Type: void
+						Modifier: public final native
+					METHOD:
+						Name: registerNatives
+						Exception Types: None
+						Parameter Types: None
+						Return Type: void
+						Modifier: private static native
+					** NO FIELDS **
+			** NO SUPERINTERFACE **
+			CONSTRUCTOR:
+				Name: source.ObjectA
+				Parameter Types: None
+				Modifier: public
+			CONSTRUCTOR:
+				Name: source.ObjectA
+				Parameter Types: int float boolean double 
+				Modifier: public
+			** NO METHODS **
+			FIELD: 
+				Name: A
+				Type: int
+				Modifier: public
+				Value: 2
+			FIELD: 
+				Name: B
+				Type: float
+				Modifier: public
+				Value: 2.1
+			FIELD: 
+				Name: C
+				Type: boolean
+				Modifier: private
+				Value: false
+			FIELD: 
+				Name: D
+				Type: double
+				Modifier: private
+				Value: 2.2
+======================================================
